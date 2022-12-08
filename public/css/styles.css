@@ -1,0 +1,16 @@
+@font-face {
+	font-family: 'Bilbo';
+	src: url('fonts/BilboSwashCaps-Regular.ttf') format('woff2'),
+		url('fonts/BilboSwashCaps-Regular.ttf') format('truetype')
+}
+.font {
+	font-family: 'Bilbo', sans-serif;
+	font-size: 24px;
+	margin-right: 25px;
+	margin-left: 15px;
+	color: #FFFFFF;
+}
+.barColor{
+	background-color: #686868;
+}
+
