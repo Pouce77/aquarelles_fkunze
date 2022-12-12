@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="m-5 w-50 h-60">
+    {{ form_start(form)}}
+    {{ form_rest(form)}}
+    <input class='btn btn-primary' type="submit" value="Publier"></input>
+  </div>
+{% endblock %}
