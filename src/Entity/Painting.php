@@ -16,10 +16,13 @@ class Painting
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 65535)]
+    #[ORM\Column(type:"text", nullable:true)]
+    private ?string $image=NULL;
+
+    #[ORM\Column(type:"text",length: 16383)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 65535, nullable: true)]
+    #[ORM\Column(type:"text",length: 16383, nullable: true)]
     private ?string $technic = null;
 
     public function getId(): ?int
@@ -59,6 +62,18 @@ class Painting
     public function setTechnic(?string $technic): self
     {
         $this->technic = $technic;
+
+        return $this;
+    }
+ 
+    public function getImage():?string
+    {
+        return $this->image;
+    }
+
+    public function setImage($image):self
+    {
+        $this->image = $image;
 
         return $this;
     }

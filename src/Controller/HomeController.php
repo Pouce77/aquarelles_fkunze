@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Painting;
+use App\Repository\PaintingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,4 +17,14 @@ class HomeController extends AbstractController
             
         ]);
     }
+
+    #[Route('/gallery', name: 'app_gallery')]
+    public function gallery(PaintingRepository $paintingRepository): Response
+    {
+        $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
+
+        return $this->render('home/gallery.html.twig', [
+            "paintings"=>$paintings,
+        ]);
+    }    
 }

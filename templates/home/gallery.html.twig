@@ -1,0 +1,26 @@
+{% extends './base.html.twig' %}
+
+
+{% block body %}
+	<body>
+		<div class="d-flex justify-content-around flex-wrap container mt-5">
+		{% for painting in paintings %}
+			<div class="card mt-3 card-bs">
+				{% if painting.image %}<img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top" alt={{painting.name}}>
+				{% endif %}
+				<div class="card-body">
+					{% if painting.name %}
+						<h5 class="card-title">{{painting.name}}</h5>
+					{% endif %}
+					<p class="card-text">{{painting.description}}</p>
+				</div>
+				<div class="card-footer">
+					<small>
+					   {{painting.technic}}</p>
+					</small>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	</body>
+{% endblock %}
