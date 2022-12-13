@@ -36,7 +36,11 @@
 height: 40vh;
 width: auto; 
 }
-
+.divContact{
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-around;
+}
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) { 
@@ -53,6 +57,11 @@ width: auto;
 	.posTitle{
 		position: relative;
 		margin: auto;
+	}
+	.divContact{
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-around;
 	}
 }
 
@@ -72,6 +81,11 @@ width: auto;
 		position: relative;
 		margin: auto;
 	}
+	.divContact{
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-around;
+	}
  }
 
 /* Large devices (desktops, 992px and up)*/
@@ -88,6 +102,11 @@ width: auto;
 		.posTitle{
 			position: absolute;
 			margin: 20px;
+		}
+		.divContact{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
 		}
 
  }
@@ -107,6 +126,11 @@ width: auto;
 			position: absolute;
 			margin: 20px;
 		}
+		.divContact{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+		}
   }
 
 /* XX-Large devices (larger desktops, 1400px and up)*/
@@ -124,6 +148,11 @@ width: auto;
 		position: absolute;
 		margin: 20px;
 	}
+	.divContact{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
 }
 
 .iconsocial,.barColor,.font{
@@ -138,15 +167,14 @@ width: auto;
 }
 .carousel{
 	width:auto;
-	height:200px;
 }
 .imgCar{
-	max-width: auto;
 	max-height:100%;
+	border-radius: 5px;
 }
 .carousel-item{
 	width:100%;
-	height:200px;
+	height:300px;
 }
 .card-bs {
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
@@ -154,4 +182,5 @@ width: auto;
 }
 .backImg{
 	background-image: url("images/crbst_combloux .jpg");
+	
 }

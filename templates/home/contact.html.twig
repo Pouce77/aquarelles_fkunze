@@ -1,9 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="m-5 w-50 h-60">
-    {{ form_start(form)}}
-    {{ form_rest(form)}}
-    <input class='btn btn-primary' type="submit" value="Publier"></input>
+	<h1 class="fontTitle text-center mt-5">Laisser moi un message</h1>
+	<div class="divContact">
+		<div class="m-3 w-50 p-3 border border-primary rounded shadow">
+			{{ form_start(form)}}
+			{% if app.user %}
+				{{form_row(form.Email,{'attr': {'value':app.user.email }}) }}
+			{% else %}
+				{{form_row(form.Email)}}
+			{% endif %}
+			{{ form_rest(form)}}
+			<input class='btn btn-primary' type="submit" value="Envoyer"></input>
+	  </div>
+		<img class="rounded-circle w-25 align-self-center m-2" src="css/images/francoiscontact.jpg" alt="François Kunzé">
   </div>
 {% endblock %}
