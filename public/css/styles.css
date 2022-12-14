@@ -196,3 +196,7 @@ background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
 	border: none;
 	background: none;
 }
+.imgActu{
+	max-height: 100px;
+	width: auto;
+}
