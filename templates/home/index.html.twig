@@ -7,11 +7,6 @@
 			class="posTitle">
 			<!--carousel-->
 			<div id="carouselExampleControls" class="carousel carousel-fade" data-bs-ride="carousel">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-				</div>
 				<div class="carousel-inner m-2">
 					<div class="carousel-item active">
 						<img src="css\images\crbst_marche1.jpg" class="d-block m-auto imgCar" alt="...">
@@ -23,20 +18,17 @@
 						<img src="css\images\crbst_Vaison.jpg" class="d-block m-auto imgCar" alt="...">
 					</div>
 				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
 			</div>
 			<h1 class="fontText text-center pt-2">“Le dessin a toujours été pour moi un moyen d’expression essentiel...”</h1>
 		</div>
 		<!--background-image-->
-		<div class="imgContainer">
+		<div class="imgContainer m-5">
 			<img class="imgFrancois" src={{ asset('css/images/francoiskunze.jpg') }} alt="image de François Kunzé">
+		</div>
+		<div>
+		    <h1 class="fontTitle text-center p-5 border-top">
+				    Actualité
+				</h1>
 		</div>
 	</body>
 {% endblock %}
