@@ -6,92 +6,109 @@
 		<meta name="description" content="Le site internet du peintre aquarelliste François Kunzé. Découvrez son univers autour des rivières, des montagne et des portraits.">
 		<title>
 			{% block title %}
-                Aquarelles de François Kunzé
+				Aquarelles de François Kunzé
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
-		<!-- CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">	
+			<!-- CSS -->
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 			<link rel="stylesheet" href={{ asset('css/styles.css') }}>
 		{% endblock %}
 
 		{% block javascripts %}
-    <!-- JavaScript -->
+			<!-- JavaScript -->
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 			<script src={{ asset('scripts/script.js') }}></script>
 		{% endblock %}
 	</head>
 	<body>
-	{% block header %}
-	  <header>
-	    <!-- Navbar -->
-			<nav class="navbar navbar-expand-lg barColor">
-				<div class="container-fluid">
-				<a class="navbar-brand font fontTitle ms-5">François Kunzé</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse navFlex" id="navbarNav">
-						<ul class="navbar-nav align-items-center">
-							{% if (app.request.attributes.get('_route')=='app_home' ) %}
-							{% else %}
-							<li class="nav-item">
-								<a class="nav-link font" aria-current="page" href="/"><i class="bi bi-house"></i></a>
-							</li>
-							{% endif %}
-							<li class="nav-item">
-								<a class="nav-link font" aria-current="page" href="/gallery">Galerie</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link font" href="#">Actualité</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link font" href="#">Présentation</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link font" href="#">Liens</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link font" href="/contact">Contact</a>
-							</li>
-							<li class="nav-item border rounded">
-								{% if app.user %}
-								<p class="text-center m-0">{{app.user.username}}</p>
-								<a class="nav-link font" href="/logout">Se déconnecter</a>
-								{% else %}
-								<a class="nav-link font" href="/login">Se connecter</a>
+		{% block header %}
+			<header>
+				<!-- Navbar -->
+				<nav class="navbar navbar-expand-lg barColor">
+					<div class="container-fluid">
+						<a class="navbar-brand font fontTitle ms-5">François Kunzé</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse navFlex" id="navbarNav">
+							<ul class="navbar-nav align-items-center">
+								{% if (app.request.attributes.get('_route')=='app_home' ) %}
+									{% else %}
+										<li class="nav-item">
+											<a class="nav-link font" aria-current="page" href="/">
+												<i class="bi bi-house"></i>
+											</a>
+										</li>
 								{% endif %}
-							</li>
-						</ul>
+								<li class="nav-item dropdown">
+									<a class="nav-link font" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Galerie
+									</a>
+									<ul class="dropdown-menu dropdown-menu-end hover">
+										<li>
+											<a class="dropdown-item font bg-secondary" href="/gallery">Aquarelles</a>
+										</li>
+										<li>
+											<a class="dropdown-item font bg-secondary" href="#">Dessins</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link font" href="#">Actualité</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link font" href="#">Présentation</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link font" href="#">Liens</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link font" href="/contact">Contact</a>
+								</li>
+								<li class="nav-item border rounded">
+									{% if app.user %}
+										<p class="text-center m-0">{{app.user.username}}</p>
+										<a class="nav-link font" href="/logout">Se déconnecter</a>
+									{% else %}
+										<a class="nav-link font" href="/login">Se connecter</a>
+									{% endif %}
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div>
-			</nav>
-	</header>	
-	{% endblock %}
-
-	{% block body %}
-	<body>
-	</body>
+				</nav>
+			</header>
+		{% endblock %}
+		{% block body %}
+		</body>
+		<body></body>
 	{% endblock %}
 	<!--footer-->
-  <footer class="footer p-1 barColor sticky-bottom mt-3">
-				<ul class="nav justify-content-center">
-					<li class="nav-item">
-						<a class="nav-link iconsocial" aria-current="page" href="https://www.facebook.com/people/Fran%C3%A7ois-Kunze/100016187238048/" target="blank"><i class="bi bi-facebook"></i></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link iconsocial" href="#" target="blank"><i class="bi bi-twitter"></i></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link iconsocial" href="#" target="blank"><i class="bi bi-instagram"></i></a>
-					</li>
-				</ul>
-				<div>
-					<p class="text-center iconsocial mb-0">
-					Site créé par <a class="iconsocial" href="#" target="blank">JKWebCreation</a>
-					</p>
-				</div>
-			</footer>
-	</body>
-</html>
+	<footer class="footer p-1 barColor fixed-bottom mt-3">
+		<ul class="nav justify-content-center">
+			<li class="nav-item">
+				<a class="nav-link iconsocial" aria-current="page" href="https://www.facebook.com/people/Fran%C3%A7ois-Kunze/100016187238048/" target="blank">
+					<i class="bi bi-facebook"></i>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link iconsocial" href="#" target="blank">
+					<i class="bi bi-twitter"></i>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link iconsocial" href="#" target="blank">
+					<i class="bi bi-instagram"></i>
+				</a>
+			</li>
+		</ul>
+		<div>
+			<p class="text-center iconsocial mb-0">
+				Site créé par
+				<a class="iconsocial" href="#" target="blank">JKWebCreation</a>
+			</p>
+		</div>
+	</footer>
+</html></body></html>

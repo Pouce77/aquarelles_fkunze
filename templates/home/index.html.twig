@@ -2,10 +2,16 @@
 
 {% block body %}
 	<body>
-	<h1 class="fontTitle mt-2 text-center pb-2">Peintre Aquarelliste</h1>
-	  <div class="posTitle">
+		<h1 class="fontTitle mt-2 text-center pb-2">Peintre Aquarelliste</h1>
+		<div
+			class="posTitle">
 			<!--carousel-->
 			<div id="carouselExampleControls" class="carousel carousel-fade" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
 				<div class="carousel-inner m-2">
 					<div class="carousel-item active">
 						<img src="css\images\crbst_marche1.jpg" class="d-block m-auto imgCar" alt="...">

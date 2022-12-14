@@ -181,6 +181,13 @@ width: auto;
   width: 18rem;
 }
 .backImg{
-	background-image: url("images/crbst_combloux .jpg");
-	
+	background: #CEC9CD;
+background: -moz-linear-gradient(left, #CEC9CD 0%, #B5B7C5 100%);
+background: -webkit-linear-gradient(left, #CEC9CD 0%, #B5B7C5 100%);
+background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
+}
+
+.dropdown-menu{
+	border: none;
+	background: none;
 }
