@@ -3,8 +3,8 @@
 {% endblock %}
 
 {% block body %}
-  <h1 class="text-center m-5">Actualités</h1>
-
+  <h1 class="text-center m-5 fontTitle">Actualités</h1>
+  
   {% if is_granted('ROLE_ADMIN') %}
 		<div class='d-flex justify-content-center'>
 			<a class='btn btn-primary m-3' href="/actuality/add">
@@ -16,8 +16,8 @@
     
   <div class="border-top m-2 d-flex flex-row">
     <img class="m-2" src={{ asset('css/images/' ~ actuality.image) }} alt={{actuality.title}}>
-    <div>
-      <h1>
+    <div class="ms-3">
+      <h1 class="fontTitle">
         {{actuality.title}}
       </h1>
       <p>

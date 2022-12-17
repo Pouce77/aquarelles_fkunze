@@ -18,7 +18,7 @@ class ActuController extends AbstractController
 {
 
     #[Route('/actuality', name: 'app_actuality')]
-    public function actuality(HttpFoundationRequest $request,ActualityRepository $actualityRepository): Response
+    public function actuality(ActualityRepository $actualityRepository): Response
     {
 
         $actualities = $actualityRepository->findAll(); // SELECT * FROM `actuality`;
