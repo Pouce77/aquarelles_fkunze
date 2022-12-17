@@ -10,7 +10,7 @@
 		</div>
 	{% endif %}
 	<body class="backImg">
-		<div class="d-flex justify-content-around flex-wrap container mt-3">
+		<div class="d-flex justify-content-around flex-wrap container mt-1">
 			{% for painting in paintings %}
 				<div class="card m-2 card-bs p-2">
 					{% if painting.image %}<img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top" alt={{painting.name}}>
@@ -27,7 +27,7 @@
 					</small>
 				</div>
 				{% if is_granted('ROLE_ADMIN') %}
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						Supprimer
 					</button>
 					<!-- Modal -->

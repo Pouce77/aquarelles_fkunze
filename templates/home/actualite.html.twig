@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Actualités
+{% endblock %}
+
+{% block body %}
+  <h1 class="text-center m-5">Actualités</h1>
+
+  {% if is_granted('ROLE_ADMIN') %}
+		<div class='d-flex justify-content-center'>
+			<a class='btn btn-primary m-3' href="/actuality/add">
+				<i class="bi bi-plus me-2"></i>Ajouter une actualité</a>
+		</div>
+	{% endif %}
+
+  {% for actuality in actualities %}
+    
+  <div class="border-top m-2 d-flex flex-row">
+    <img class="m-2" src={{ asset('css/images/' ~ actuality.image) }} alt={{actuality.title}}>
+    <div>
+      <h1>
+        {{actuality.title}}
+      </h1>
+      <p>
+        {{actuality.content}}
+      </p>
+      <small>Publié le {{actuality.publishedAt|date('d/m/Y')}}</small>
+    </div>
+    
+  </div>
+{% endfor %}
+{% endblock %}
+
+	

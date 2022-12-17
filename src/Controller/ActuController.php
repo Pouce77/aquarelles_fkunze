@@ -2,25 +2,41 @@
 
 namespace App\Controller;
 
-use App\Entity\Painting;
-use App\Form\PaintType;
+use App\Entity\Actuality;
+use App\Form\ActuType;
+use App\Repository\ActualityRepository;
+use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class PaintingController extends AbstractController
+class ActuController extends AbstractController
 {
-    #[Route('/painting/add', name: 'app_painting_add')]
-    public function create(HttpFoundationRequest $request, ManagerRegistry $doctrine,SluggerInterface $slugger): Response
+
+    #[Route('/actuality', name: 'app_actuality')]
+    public function actuality(HttpFoundationRequest $request,ActualityRepository $actualityRepository): Response
     {
+
+        $actualities = $actualityRepository->findAll(); // SELECT * FROM `actuality`;
+        return $this->render("home/actualite.html.twig", [
+           "actualities"=>$actualities
+        ]);
+
+    }
+
+    
+    #[Route('/actuality/add', name: 'app_actuality_add')]
+    public function addActu(HttpFoundationRequest $request,ManagerRegistry $doctrine,SluggerInterface $slugger): Response
+    {
+    
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $painting=new Painting();
-        $form=$this->createForm(PaintType::class, $painting);
+        $actuality=new Actuality();
+        $form=$this->createForm(ActuType::class, $actuality);
         $form->handleRequest($request);
             
             if ($form->isSubmitted() && $form->isValid()) {
@@ -38,36 +54,24 @@ class PaintingController extends AbstractController
                     } catch (FileException $e) {
                         dump($e);
                     }
-                    $painting->setImage($newFilename);
+                    $actuality->setImage($newFilename);
+        
                 }
-    
+
+                $date=new DateTimeImmutable();
+                $date->format("d/m/Y");
+                $actuality->setPublishedAt($date);
+
                 $em = $doctrine->getManager();
-                $em->persist($painting);
+                $em->persist($actuality);
                 $em->flush();
                 return $this->redirectToRoute("app_gallery");
             }
     
-        return $this->render('painting/painting.html.twig', [
+        
+        return $this->render("actu/addactu.html.twig", [
             "form" => $form->createView()
         ]);
     }
 
-    #[Route('/painting/delete/{id<\d+>}', name: 'app_painting_delete')]
-    public function delete(Painting $painting, ManagerRegistry $doctrine): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-        $image=$painting->getImage();
-        if ($image){
-            $nomImage=$this->getParameter('uploads').'/'.$image;
-            if(file_exists($nomImage)){
-                unlink($nomImage);
-            }
-        }
-        $em=$doctrine->getManager();
-        $em->remove($painting);
-        $em->flush();
-
-        return $this->redirectToRoute('app_gallery');
-    }
 }
