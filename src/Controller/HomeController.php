@@ -50,4 +50,14 @@ class HomeController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+
+    #[Route('/presentation', name: 'app_presentation')]
+    public function presentation(PaintingRepository $paintingRepository): Response
+    {
+        $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
+
+        return $this->render('home/presentation.html.twig', [
+            "paintings"=>$paintings,
+        ]);
+    }
 }
