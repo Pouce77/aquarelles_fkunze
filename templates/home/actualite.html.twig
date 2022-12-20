@@ -11,11 +11,10 @@
 				<i class="bi bi-plus me-2"></i>Ajouter une actualité</a>
 		</div>
 	{% endif %}
-
+	<div class="row row-cols-2">
   {% for actuality in actualities %}
-    
-  <div class="border-top m-2 d-flex flex-row">
-     <a data-bs-toggle="modal" data-bs-target="#eModal"><img id="imgActu" class="m-2" src={{ asset('css/images/' ~ actuality.image) }} ></a>
+  <div class="border-top d-flex flex-row col">
+     <a data-bs-toggle="modal" data-bs-target="#eModal"><img id="imgActu" class="m-2 h-50 w-auto" src={{ asset('css/images/' ~ actuality.image) }} ></a>
 						<!-- Modal -->
 						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-xl">
@@ -42,6 +41,7 @@
     
   </div>
 {% endfor %}
+</div>
 {% endblock %}
 
 	
