@@ -15,7 +15,21 @@
   {% for actuality in actualities %}
     
   <div class="border-top m-2 d-flex flex-row">
-    <img class="m-2" src={{ asset('css/images/' ~ actuality.image) }} alt={{actuality.title}}>
+     <a data-bs-toggle="modal" data-bs-target="#eModal"><img id="imgActu" class="m-2" src={{ asset('css/images/' ~ actuality.image) }} ></a>
+						<!-- Modal -->
+						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<img id="imgModal">
+									</div>
+								</div>
+							</div>
+						</div>
+
     <div class="ms-3">
       <h1 class="fontTitle">
         {{actuality.title}}
