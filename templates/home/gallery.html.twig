@@ -16,7 +16,7 @@
 
 				<div class="card m-2 card-bs p-2">
 					{% if painting.image %}
-						<a data-bs-toggle="modal" data-bs-target="#eModal"><img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top" alt={{painting.name}}></a>
+						<a data-bs-toggle="modal" data-bs-target="#eModal"><img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top"></a>
 						<!-- Modal -->
 						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-xl">
@@ -25,7 +25,7 @@
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<img id="imgModal" class="card-img-top" alt={{painting.name}}>
+										<img id="imgModalGal" class="card-img-top">
 									</div>
 								</div>
 							</div>

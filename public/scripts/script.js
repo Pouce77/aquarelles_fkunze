@@ -28,12 +28,15 @@ const link=document.querySelectorAll('.card-img-top');
 for(let i = 0; i < link.length;i++) {
   link[i].addEventListener('click', function(){
     src=(link[i].getAttribute('src'));
+    console.log(typeof src);
   });
 }
 document.addEventListener("shown.bs.modal",function(e) {
-  const modalImage = document.querySelector("#imgModal");
-  if (modalImage!==null){
-  modalImage.setAttribute('src',src);
+  const modalImageGal = document.querySelector("#imgModalGal");
+  if (modalImageGal!==null){
+    console.log(modalImageGal);
+    console.log(src);
+    modalImageGal.setAttribute('src',src);
   }
 })
 
