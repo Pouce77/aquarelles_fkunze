@@ -35,18 +35,17 @@
 				<div>
 					<img class="imgActu me-2 ms-2  rounded shadow" src={{ asset('css/images/' ~ actuality.image) }} alt="Actualité principale">
 				</div>
-				<div class="bg-white p-3 rounded shadow d-flex flex-column align-items-center mt-3 mb-3">
-					<div class="d-flex flex-row justify-content-start ps-4 w-100">
-					<i class="bi bi-calendar-event pe-2"></i>
-					<p><small>{{actuality.publishedAt|date("d/m/Y")}}</small></p>
-					</div>
-					
+				<div class="bg-white p-3 rounded shadow d-flex flex-column align-items-center mt-3 mb-3">					
 					<p>
 						{{actuality.title}}
 					</p>
 					<p>
 						{{actuality.content}}
 					</p>
+					<div class="d-flex flex-row justify-content-start ps-4 w-100">
+					<i class="bi bi-calendar-event pe-2"></i>
+					<p><small>Publiée le {{actuality.publishedAt|date("d/m/Y")}}</small></p>
+					</div>
 				</div>
 			</div>
 

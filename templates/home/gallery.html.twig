@@ -11,9 +11,25 @@
 	{% endif %}
 	<body class="backImg">
 		<div class="d-flex justify-content-around flex-wrap container mt-1">
+
 			{% for painting in paintings %}
+
 				<div class="card m-2 card-bs p-2">
-					{% if painting.image %}<img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top" alt={{painting.name}}>
+					{% if painting.image %}
+						<a data-bs-toggle="modal" data-bs-target="#eModal"><img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top" alt={{painting.name}}></a>
+						<!-- Modal -->
+						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<img id="imgModal" class="card-img-top" alt={{painting.name}}>
+									</div>
+								</div>
+							</div>
+						</div>
 					{% endif %}
 					<div class="card-body">
 						{% if painting.name %}
@@ -27,7 +43,7 @@
 					</small>
 				</div>
 				{% if is_granted('ROLE_ADMIN') %}
-					<button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<button type="button" class="btn btn-danger m-1" id={{painting.id}} data-bs-toggle="modal" data-bs-target="#exampleModal">
 						Supprimer
 					</button>
 					<!-- Modal -->
@@ -43,7 +59,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-									<a type="button" class="btn btn-primary" href='{{path('app_painting_delete', {'id': painting.id})}}'>Supprimer définitivement</a>
+									<a id="delete" type="button" class="btn btn-primary" href="">Supprimer définitivement</a>
 								</div>
 							</div>
 						</div>
@@ -54,5 +70,6 @@
 				{% endif %}
 			</div>
 		{% endfor %}
-	</body>
-</div></body>{% endblock %}
+	</div>	
+</body>
+{% endblock %}

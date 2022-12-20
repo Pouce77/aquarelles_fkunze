@@ -18,7 +18,6 @@ class HomeController extends AbstractController
     public function index(ActualityRepository $actualityRepository): Response
     {
         $actualities=$actualityRepository->findAll();
-        dump($actualities);
         $actuality=end($actualities);
 
         return $this->render('home/index.html.twig', [
