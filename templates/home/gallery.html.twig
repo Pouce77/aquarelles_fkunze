@@ -14,9 +14,9 @@
 
 			{% for painting in paintings %}
 
-				<div class="card m-2 card-bs p-2">
+				<div class="card m-2 card-bs p-2 h-75">
 					{% if painting.image %}
-						<a data-bs-toggle="modal" data-bs-target="#eModal"><img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top"></a>
+						<a data-bs-toggle="modal" data-bs-target="#eModal" class="m-auto"><img src={{ asset('css/images/' ~ painting.image) }} class="card-img-top"></a>
 						<!-- Modal -->
 						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-xl">
@@ -25,7 +25,7 @@
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<img id="imgModalGal" class="card-img-top">
+										<img id="imgModalGal" class="w-100">
 									</div>
 								</div>
 							</div>
@@ -35,11 +35,13 @@
 						{% if painting.name %}
 							<h5 class="card-title">{{painting.name}}</h5>
 						{% endif %}
-						<p class="card-text">{{painting.description}}</p>
 					</div>
 					<div class="card-footer">
 						<small>
 							{{painting.technic}}</p>
+					</small>
+					<small>
+							<a href="#">Commentaires...</a></p>
 					</small>
 				</div>
 				{% if is_granted('ROLE_ADMIN') %}
@@ -65,7 +67,7 @@
 						</div>
 					</div>
 
-					<a class='btn btn-warning m-1'>
+					<a class="btn btn-warning m-1" href="{{path('app_painting_update', {'id': painting.id})}}">
 						<i class="bi bi-pencil-square me-2"></i>Modifier</a>
 				{% endif %}
 			</div>

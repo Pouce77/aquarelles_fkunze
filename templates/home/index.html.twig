@@ -27,7 +27,7 @@
 		</div>
 		<div class="border-top m-3 pb-5 bg-success bg-opacity-50">
 			<h1 class="fontTitle text-center p-5 pb-2">
-				Actualité
+				Prochainement...
 			</h1>
 
 			<div class="d-flex actu row justify-content-evenly">
@@ -39,18 +39,19 @@
 						<img class="imgActu me-2 ms-2 rounded shadow" src={{ asset('css/images/' ~ actu.image) }} alt="Actualité principale">
 					</div>
 				{% endif %}
-					<div class="bg-white p-3 rounded shadow d-flex flex-column align-items-center mt-3 mb-3">
-						<div class="d-flex flex-row justify-content-start ps-4 w-100">
+					<div class="bg-white p-3 rounded shadow d-flex flex-column align-items-center mt-3 mb-3 w-100">
+						<div class="d-flex flex-row justify-content-start ps-4">
 							<i class="bi bi-calendar-event pe-2"></i>
 							<p>
-								<small>Publiée le
+								<small> Publiée le
 									{{actu.publishedAt|date("d/m/Y")}}</small>
 							</p>
 						</div>
-						<p>
+						<h6>
 							{{actu.title}}
+						</h6>
 						<br>
-							<br>
+						<p>
 							{{actu.content}}
 						</p>
 					</div>

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1 class="fontTitle text-center mt-5">Laisser moi un message</h1>
+	<h1 class="fontTitle text-center mt-5">Laissez-moi un message</h1>
 	<div class="divContact">
-		<div class="m-3 w-50 p-3 border border-primary rounded shadow">
+		<div class="m-3 w-100 p-3 border border-primary rounded shadow">
 			{{ form_start(form)}}
 			{% if app.user %}
 				{{form_row(form.Email,{'attr': {'value':app.user.email }}) }}

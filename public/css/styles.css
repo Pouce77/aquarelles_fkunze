@@ -242,3 +242,7 @@ background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
 	max-height: 150px;
 	width: auto;
 }
+.card-img-top{
+	height: 150px;
+	width: auto;
+}

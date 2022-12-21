@@ -48,7 +48,8 @@ class PaintingController extends AbstractController
             }
     
         return $this->render('painting/painting.html.twig', [
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "route" => "/painting/add"
         ]);
     }
 
@@ -69,5 +70,25 @@ class PaintingController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('app_gallery');
+    }
+
+    #[Route('/painting/update/{id<\d+>}', name: 'app_painting_update')]
+    public function update(HttpFoundationRequest $request,Painting $painting, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $form=$this->createForm(PaintType::class, $painting);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+           $entityManager=$doctrine->getManager();
+           $entityManager->flush();
+           return $this->redirectToRoute('app_gallery');
+        }
+
+        return $this->render("painting/painting.html.twig", [
+            "form" => $form->createView(),
+            "route" => ""
+        ]);
     }
 }

@@ -25,6 +25,9 @@ class Painting
     #[ORM\Column(type:"text",length: 16383, nullable: true)]
     private ?string $technic = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,26 @@ class Painting
     public function setImage($image):self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */ 
+    public function getCategory():string
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */ 
+    public function setCategory($category):self
+    {
+        $this->category = $category;
 
         return $this;
     }

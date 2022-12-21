@@ -36,6 +36,26 @@ class HomeController extends AbstractController
             "paintings"=>$paintings,
         ]);
     }
+
+    #[Route('/gallery/dessins', name: 'app_gallery_dessin')]
+    public function galleryDessin(PaintingRepository $paintingRepository): Response
+    {
+        $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
+
+        return $this->render('home/gallery.html.twig', [
+            "paintings"=>$paintings,
+        ]);
+    }
+
+    #[Route('/gallery/videos', name: 'app_gallery_videos')]
+    public function galleryVideo(PaintingRepository $paintingRepository): Response
+    {
+        $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
+
+        return $this->render('home/gallery.html.twig', [
+            "paintings"=>$paintings,
+        ]);
+    }
     
     #[Route('/contact', name: 'app_contact')]
     public function contact(HttpFoundationRequest $request): Response

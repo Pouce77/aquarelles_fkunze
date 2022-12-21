@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Painting;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -35,9 +36,17 @@ class PaintType extends AbstractType{
             "required" => true,
             'constraints' => [new NotBlank(['message' => 'La technique ne peut pas être vide !'])],
             'constraints' => [new Length(['min' => 5, 'max' => 320,'minMessage' => 'La taille du contenu est comprise entre 5 et 320 caractères !','maxMessage' => 'La taille du contenu est comprise entre 5 et 320 caractères !'])]
+          ])  
+          ->add('category',ChoiceType::class,[
+            "label"=>"Catégorie",
+            "required" => true,
+            "choices" => [
+              'Dessin'=>'Dessin',
+              'Aquarelle'=>'Aquarelle'
+            ]
           ])   
           ->add("image", FileType::class, [
-            "label" => "L'image",
+            "label" => "Choisir une image",
             'mapped' => false,
             "required" => false,
             'constraints' => [
