@@ -3,45 +3,64 @@
 {% endblock %}
 
 {% block body %}
-  <h1 class="text-center m-5 fontTitle">Actualités</h1>
-  
-  {% if is_granted('ROLE_ADMIN') %}
+	<h1 class="text-center m-3 fontTitle">Actualités</h1>
+	<!-- if ROLE_ADMIN then button to add actuality" is available -->
+	{% if is_granted('ROLE_ADMIN') %}
 		<div class='d-flex justify-content-center'>
-			<a class='btn btn-primary m-3' href="/actuality/add">
+			<a class='btn btn-primary m-2' href="/actuality/add">
 				<i class="bi bi-plus me-2"></i>Ajouter une actualité</a>
 		</div>
 	{% endif %}
-	<div class="row row-cols-2">
-  {% for actuality in actualities %}
-  <div class="border-top d-flex flex-row col">
-     <a data-bs-toggle="modal" data-bs-target="#eModal"><img id="imgActu" class="m-2 h-50 w-auto" src={{ asset('css/images/' ~ actuality.image) }} ></a>
-						<!-- Modal -->
-						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">
-										<img id="imgModal">
-									</div>
+	<div class="container">
+	<div class="row m-2 justify-content-start">
+		<!-- loop on the actualities passed in parameters of the controller-->
+		{% for actuality in actualities %}
+			<div class="border-top d-flex flex-row m-3 pt-3 col-10 col-sm-5 col-md-5">
+				{% if actuality.image %}
+					<a data-bs-toggle="modal" data-bs-target="#eModal">
+						<img id="imgActu" class="m-2 imgActu" src={{ asset('css/images/' ~ actuality.image) }}>
+					</a>
+					<!-- Modal is avaiable when clicking on the picture -->
+					<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-xl">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<img id="imgModal">
 								</div>
 							</div>
 						</div>
-
-    <div class="ms-3">
-      <h1 class="fontTitle">
-        {{actuality.title}}
-      </h1>
-      <p>
-        {{actuality.content}}
-      </p>
-      <small>Publié le {{actuality.publishedAt|date('d/m/Y')}}</small>
-    </div>
-    
-  </div>
-{% endfor %}
+					</div>
+					<!--end of Modal -->
+					<div class="ms-3 w-75">
+						<h6>
+							{{actuality.title}}
+						</h6>
+						<p>
+							{{actuality.content}}
+						</p>
+						<small>Publié le
+							{{actuality.publishedAt|date('d/m/Y')}}</small>
+					</div>
+			</div>
+			{% else %}
+				<div class="ms-3">
+					<h6>
+						{{actuality.title}}
+					</h6>
+					<p>
+						{{actuality.content}}
+					</p>
+					<small>
+						Publié le {{actuality.publishedAt|date('d/m/Y')}}
+					</small>
+				</div>
+			</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+	</div>
 </div>
 {% endblock %}
-
-	
