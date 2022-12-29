@@ -10,7 +10,7 @@
 		</div>
 	{% endif %}
 	<body class="backImg">
-		<div class="d-flex justify-content-around flex-wrap container mt-1">
+		<div class="d-flex justify-content-around flex-wrap container mt-3">
 
 			{% for painting in paintings %}
 
@@ -40,13 +40,15 @@
 						<small>
 							{{painting.technic}}</p>
 					</small>
+					{% if is_granted('ROLE_USER') %}
 					<small>
-							<a href="#">Commentaires...</a></p>
+							<a href="#">Commenter...</a></p>
 					</small>
+					{% endif %}
 				</div>
 				{% if is_granted('ROLE_ADMIN') %}
 					<button type="button" class="btn btn-danger m-1" id={{painting.id}} data-bs-toggle="modal" data-bs-target="#exampleModal">
-						Supprimer
+						<i class="bi bi-trash3 me-2"></i>Supprimer
 					</button>
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

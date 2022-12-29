@@ -34,8 +34,7 @@ body{
 	display:flex;
 	flex-direction: row;
 	justify-content: center;
-	max-width: 90%;
-	margin: none;
+	max-width: 100%;
 }
 .imgFrancois{	
 height: 30vh;
@@ -64,7 +63,7 @@ width: auto;
 		display:flex;
 		flex-direction: row;
 		justify-content: center;
-		max-width: 90%;
+		max-width: 100%;
 	}
 	.imgFrancois{	
 	height: 30vh;
@@ -94,7 +93,7 @@ width: auto;
 		display:flex;
 		flex-direction: row;
 		justify-content: center;
-		max-width: 90%;
+		max-width: 100%;
 	}
 	.posTitle{
 		position: relative;

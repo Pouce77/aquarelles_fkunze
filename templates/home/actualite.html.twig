@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<!--end of Modal -->
-					<div class="ms-3 w-75">
+					<div class="d-flex flex-column ms-3 w-75">
 						<h6>
 							{{actuality.title}}
 						</h6>
@@ -42,11 +42,20 @@
 							{{actuality.content}}
 						</p>
 						<small>Publié le
-							{{actuality.publishedAt|date('d/m/Y')}}</small>
+							{{actuality.publishedAt|date('d/m/Y')}}
+						</small>
+						{% if is_granted('ROLE_ADMIN') %}
+						<a class="btn btn-warning m-1" href="#">
+							<i class="bi bi-pencil-square me-2"></i>Modifier
+						</a>
+						<a class="btn btn-danger m-1" href="#">
+							<i class="bi bi-trash3 me-2"></i>Supprimer
+						</a>
+						{% endif %}
 					</div>
 			</div>
 			{% else %}
-				<div class="ms-3">
+				<div class="d-flex flex-column ms-3 w-100">
 					<h6>
 						{{actuality.title}}
 					</h6>
@@ -56,6 +65,14 @@
 					<small>
 						Publié le {{actuality.publishedAt|date('d/m/Y')}}
 					</small>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a class="btn btn-warning m-1" href="#">
+							<i class="bi bi-pencil-square me-2"></i>Modifier
+						</a>
+						<a class="btn btn-danger m-1" href="#">
+							<i class="bi bi-trash3 me-2"></i>Supprimer
+						</a>
+						{% endif %}
 				</div>
 			</div>
 		{% endif %}
