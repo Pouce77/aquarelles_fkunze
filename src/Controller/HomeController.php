@@ -19,8 +19,10 @@ class HomeController extends AbstractController
     {
         $actualities=$actualityRepository->findAll();
         $actuality1=end($actualities);
+        if($actuality1){
         $actuality2=$actualities[array_search($actuality1,$actualities)-1];
         $actuality=[$actuality1,$actuality2];
+        }
 
         return $this->render('home/index.html.twig', [
             "actuality" => $actuality
