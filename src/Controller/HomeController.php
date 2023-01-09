@@ -33,10 +33,8 @@ class HomeController extends AbstractController
     public function gallery(PaintingRepository $paintingRepository): Response
     {
         $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
-        $public="public/";
         return $this->render('home/gallery.html.twig', [
-            "paintings"=>$paintings,
-            "public" => $public
+            "paintings"=>$paintings
         ]);
     }
 
