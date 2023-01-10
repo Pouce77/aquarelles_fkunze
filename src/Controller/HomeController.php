@@ -17,7 +17,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ActualityRepository $actualityRepository): Response
     {
-        $path='kernel.project_dir';
         $actualities=$actualityRepository->findAll();
         $actuality1=end($actualities);
         if($actuality1){
@@ -26,8 +25,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            "actuality" => $actuality,
-            "path" => $path
+            "actuality" => $actuality
         ]);
     }
 
