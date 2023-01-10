@@ -25,7 +25,7 @@ class PaintingController extends AbstractController
             
             if ($form->isSubmitted() && $form->isValid()) {
                 $image = $form->get('image')->getData();
-    
+                $originalFilename=null;
                 if ($image) {
                     $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                     $safeFilename = $slugger->slug($originalFilename);
@@ -38,7 +38,7 @@ class PaintingController extends AbstractController
                     } catch (FileException $e) {
                         dump($e);
                     }
-                    $painting->setImage('/public/css/images/'.$image);
+                    $painting->setImage('/public/css/images/'.$originalFilename);
                 }
     
                 $em = $doctrine->getManager();
