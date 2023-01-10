@@ -50,7 +50,7 @@ DirectoryIndex public/index.php
     # - use Apache >= 2.3.9 and replace all L flags by END flags and remove the
     #   following RewriteCond (best solution)
     RewriteCond %{ENV:REDIRECT_STATUS} =""
-    RewriteRule ^public\/index\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
+    RewriteRule ^public/index\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
 
     # If the requested filename exists, simply serve it.
     # We only want to let Apache serve files and not directories.
@@ -65,7 +65,7 @@ DirectoryIndex public/index.php
         # When mod_rewrite is not available, we instruct a temporary redirect of
         # the start page to the front controller explicitly so that the website
         # and the generated links can still be used.
-        RedirectMatch 307 ^/$ /public/index.php/
+        RedirectMatch 307 ^/$ /publicindex.php/
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>

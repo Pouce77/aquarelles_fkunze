@@ -73,7 +73,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install /home/u643549348/domains/jkwebcreation.fr/public_html": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -88,8 +88,8 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.2.*",
-            "public-dir": "public_html"
+            "require": "6.2.*"
+            
         }
     },
     "require-dev": {
