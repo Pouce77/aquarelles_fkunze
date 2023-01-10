@@ -38,7 +38,7 @@ class PaintingController extends AbstractController
                     } catch (FileException $e) {
                         dump($e);
                     }
-                    $painting->setImage('/public/css/images/'.$originalFilename);
+                    $painting->setImage('/public/css/images/'.$newFilename);
                 }
     
                 $em = $doctrine->getManager();
