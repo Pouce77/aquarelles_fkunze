@@ -17,7 +17,6 @@
 				<div class="card m-2 card-bs p-2 h-75">
 					{% if painting.image %}						
 						<a data-bs-toggle="modal" data-bs-target="#eModal" class="m-auto"><img src= {{ painting.image }} class="card-img-top"></a>
-						<p>{{ painting.image }}</p>
 						<!-- Modal -->
 						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-xl">
@@ -34,7 +33,7 @@
 					{% endif %}
 					<div class="card-body">
 						{% if painting.name %}
-							<h5 class="card-title">{{painting.name}}</h5>
+							<h5 class="card-title">{{painting.image}}</h5>
 						{% endif %}
 					</div>
 					<div class="card-footer">
