@@ -91,4 +91,12 @@ class PaintingController extends AbstractController
             "route" => ""
         ]);
     }
+
+    #[Route('/painting/view/{id<\d+>}', name: 'app_painting_view')]
+    public function paintingView(Painting $painting): Response
+    {
+        return $this->render('painting/paintingView.html.twig', [
+            "painting"=>$painting
+        ]);
+    }
 }

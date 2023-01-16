@@ -22,37 +22,28 @@ document.addEventListener("shown.bs.modal",function(e) {
   modalButton.setAttribute('href','/painting/delete/'+id);
   }
 })
-//Opening modal for picture in gallery
-let src="";
-const link=document.querySelectorAll('.card-img-top');
-for(let i = 0; i < link.length;i++) {
-  link[i].addEventListener('click', function(){
-    src=(link[i].getAttribute('src'));
-    console.log(typeof src);
-  });
-}
-document.addEventListener("shown.bs.modal",function(e) {
-  const modalImageGal = document.querySelector("#imgModalGal");
-  if (modalImageGal!==null){
-    console.log(modalImageGal);
-    console.log(src);
-    modalImageGal.setAttribute('src',src);
-  }
-})
 
-//Opening modal for picture in Actuality
-let srcActu="";
-const linkActu=document.querySelectorAll('#imgActu');
-for(let i = 0; i < linkActu.length;i++) {
-  linkActu[i].addEventListener('click', function(){
-    srcActu=linkActu[i].getAttribute('src');
-    console.log(srcActu);
-  });
-}
+const img = document.getElementById("imgPaint");
+let onLoadHeight=img.clientHeight;
 
-document.addEventListener("shown.bs.modal",function(e) {
-  const modalImage = document.querySelector("#imgModal");
-  if (modalImage!==null){
-  modalImage.setAttribute('src',srcActu);
-  }
-})
+// agrandir la hauteur de l'image
+const buttonGrow=document.getElementById("buttonGrow");
+  buttonGrow.addEventListener("click", function(){
+    //si la largeur est inférieur à la div parent, on peut continuer à zoomer
+    if(img.clientWidth<img.parentElement.clientWidth){
+     let heightImg=img.clientHeight;
+     //zoom de 10% en plus
+     img.style.height=heightImg+((heightImg*10)/100)+"px";  
+    } 
+  })
+
+  // diminuer la hauteur de l'image
+  const buttonDimin=document.getElementById("buttonDimin");
+  buttonDimin.addEventListener("click", function(){  
+    //si la hauteur est plus grande que 60vh, on peut continuer de dézoomer
+    if (img.clientHeight>onLoadHeight){
+     let heightImg=img.clientHeight;
+     //dézoom de 10% en moins
+     img.style.height=heightImg-((heightImg*10)/100)+"px"; 
+    }
+  })

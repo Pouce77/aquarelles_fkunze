@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{painting.name}}
+{% endblock %}
+
+{% block body %}
+  <div class="d-flex">
+  <div class="d-flex flex-column justify-content-start w-25 ms-5 mt-5">
+    <div class="border m-1 p-1">
+      <h6>Commentaire de Pierre Dupont</h6>
+      <p>Superbe tableau François !</p>
+       <small><i>Publié le 20/03/2021</i></small>
+    </div>
+     <div class="border m-1 p-1">
+      <h6>Commentaire de Pierre Dupont</h6>
+      <p>Superbe tableau François !</p>
+      <small>Publié le 20/03/2021</small>
+    </div>
+     <div class="border m-1 p-1">
+      <h6>Commentaire de Pierre Dupont</h6>
+      <p>Superbe tableau François !</p>
+       <small>Publié le 20/03/2021</small>
+    </div>
+  </div>
+	<div class=" w-75 m-2 d-flex justify-content-center flex-column">
+    <div class="d-flex justify-content-center">
+		  <button class="btn btn-primary m-2" id="buttonGrow">
+        <i class="bi bi-zoom-in"></i>
+		  </button>
+		  <button class="btn btn-primary m-2" id="buttonDimin">
+        <i class="bi bi-zoom-out"></i>
+      </button>
+    </div>
+		<div class="m-auto w-100 d-flex justify-content-center">
+			<img class="m-3 border p-3" style="height:60vh" id="imgPaint" src={{ asset('css/images/') ~ painting.image }} alt={{painting.name}}>
+		</div>
+	</div>
+  </div>
+{% endblock %}

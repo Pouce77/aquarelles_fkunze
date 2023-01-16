@@ -16,20 +16,7 @@
 
 				<div class="card m-2 card-bs p-2 h-75">
 					{% if painting.image %}						
-						<a data-bs-toggle="modal" data-bs-target="#eModal" class="m-auto"><img src= {{ asset('css/images/') ~ painting.image }} class="card-img-top"></a>
-						<!-- Modal -->
-						<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">
-										<img id="imgModalGal" class="w-100">
-									</div>
-								</div>
-							</div>
-						</div>
+						<a href="{{path('app_painting_view', {'id': painting.id})}}" class="m-auto"><img src= {{ asset('css/images/') ~ painting.image }} class="card-img-top"></a>
 					{% endif %}
 					<div class="card-body">
 						{% if painting.name %}
