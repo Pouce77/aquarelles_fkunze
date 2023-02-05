@@ -30,6 +30,7 @@ let onLoadHeight=img.clientHeight;
 const buttonGrow=document.getElementById("buttonGrow");
   buttonGrow.addEventListener("click", function(){
     //si la largeur est inférieur à la div parent, on peut continuer à zoomer
+    
     if(img.clientWidth<img.parentElement.clientWidth){
      let heightImg=img.clientHeight;
      //zoom de 10% en plus

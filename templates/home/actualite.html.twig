@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
-{% block title %}Actualités
+{% block title %}
+	Actualités
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center m-3 fontTitle">Actualités</h1>
+<body class="bg-secondary">
+	<h1 class="text-center m-3 fontTitle text-light">Actualités</h1>
 	<!-- if ROLE_ADMIN then button to add actuality" is available -->
 	{% if is_granted('ROLE_ADMIN') %}
 		<div class='d-flex justify-content-center'>
@@ -20,21 +22,7 @@
 					<a data-bs-toggle="modal" data-bs-target="#eModal">
 						<img id="imgActu" class="m-2 imgActu" src={{ asset('css/images/' ~ actuality.image) }}>
 					</a>
-					<!-- Modal is avaiable when clicking on the picture -->
-					<div class="modal fade" id="eModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-xl">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<img id="imgModal">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--end of Modal -->
-					<div class="d-flex flex-column ms-3 w-75">
+					<div class="d-flex flex-column ms-3 w-75 text-light">
 						<h6>
 							{{actuality.title}}
 						</h6>
@@ -55,7 +43,7 @@
 					</div>
 			</div>
 			{% else %}
-				<div class="d-flex flex-column ms-3 w-100">
+				<div class="d-flex flex-column ms-3 w-100 text-light">
 					<h6>
 						{{actuality.title}}
 					</h6>
@@ -80,4 +68,5 @@
 	</div>
 	</div>
 </div>
+</body>
 {% endblock %}

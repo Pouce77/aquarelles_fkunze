@@ -3,22 +3,22 @@ body{
 	margin-bottom: 150px;
 }
 @font-face {
-	font-family: 'Bilbo';
-	src: url('fonts/BilboSwashCaps-Regular.ttf') format('woff2'),
-		url('fonts/BilboSwashCaps-Regular.ttf') format('truetype')
+	font-family: 'JosefinSans';
+	src: url('fonts/JosefinSans-Regular.ttf') format('woff2'),
+		url('fonts/JosefinSans-Regular.ttf') format('truetype')
 }
 .font{
-	font-family: 'Bilbo', sans-serif;
+	font-family: 'JosefinSans', sans-serif;
 	font-size: 24px;
 	margin-right: 25px;
 	margin-left: 15px;
 }
 .fontTitle{
 	font-size: 36px;
-	font-family: 'Bilbo', sans-serif;
+	font-family: 'JosefinSans', sans-serif;
 }
 .fontText{
-	font-family: 'Bilbo', sans-serif;
+	font-family: 'JosefinSans', sans-serif;
 	font-size: 24px;
 	color: #686868;
 }
@@ -27,7 +27,6 @@ body{
 }
 .barColor{
 	background-color: #686868;
-	
 }
 
 .imgContainer{
@@ -244,4 +243,14 @@ background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
 .card-img-top{
 	height: 150px;
 	width: auto;
+}
+.comment{
+	background-color: #B5B7C5;
+	border-radius: 10px;
+}
+.btnColor{
+	background-color: #686868;
+}
+.btnColor:hover{
+	background-color: #3e3e3e;
 }

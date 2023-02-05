@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -29,10 +31,12 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/gallery', name: 'app_gallery')]
+    #[Route('/gallery/aquarelles', name: 'app_gallery_aquarelle')]
     public function gallery(PaintingRepository $paintingRepository): Response
     {
-        $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
+        $paintings = $paintingRepository->findby([
+            "category" => "Aquarelle"
+        ]); // SELECT * FROM `painting` WHERE `category` = `Aquarelle`
         return $this->render('home/gallery.html.twig', [
             "paintings"=>$paintings
         ]);
@@ -41,10 +45,11 @@ class HomeController extends AbstractController
     #[Route('/gallery/dessins', name: 'app_gallery_dessin')]
     public function galleryDessin(PaintingRepository $paintingRepository): Response
     {
-        $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
-
+        $paintings = $paintingRepository->findby([
+            "category" => "Dessin"
+        ]); // SELECT * FROM `painting` WHERE `category` = `Dessin`
         return $this->render('home/gallery.html.twig', [
-            "paintings"=>$paintings,
+            "paintings"=>$paintings
         ]);
     }
 
@@ -59,14 +64,21 @@ class HomeController extends AbstractController
     }
     
     #[Route('/contact', name: 'app_contact')]
-    public function contact(HttpFoundationRequest $request): Response
+    public function contact(HttpFoundationRequest $request, MailerInterface $mailer): Response
     {
-       $form=$this->createForm(ContactType::class);
+        $form=$this->createForm(ContactType::class);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-                      
-            return $this->redirectToRoute("app_home");
+            $email = (new Email())
+            ->from('julienkunze@jkwebcreation.fr')
+            ->to('julienkunze0@gmail.com')
+            ->subject('Nouveau message sur kunze.fr')
+            ->text($request->request->all('contact')['message'])
+            ->html('<p>'.$request->request->all('contact')['message'].'</p>')
+        ;
+
+        $mailer->send($email);
         }
 
         return $this->render("home/contact.html.twig", [

@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Painting;
+use App\Form\CommentType;
 use App\Form\PaintType;
+use App\Repository\CommentRepository;
+use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -44,7 +48,7 @@ class PaintingController extends AbstractController
                 $em = $doctrine->getManager();
                 $em->persist($painting);
                 $em->flush();
-                return $this->redirectToRoute("app_gallery");
+                return $this->redirectToRoute("app_home");
             }
     
         return $this->render('painting/painting.html.twig', [
@@ -69,7 +73,7 @@ class PaintingController extends AbstractController
         $em->remove($painting);
         $em->flush();
 
-        return $this->redirectToRoute('app_gallery');
+        return $this->redirectToRoute('app_home');
     }
 
     #[Route('/painting/update/{id<\d+>}', name: 'app_painting_update')]
@@ -83,7 +87,7 @@ class PaintingController extends AbstractController
         {
            $entityManager=$doctrine->getManager();
            $entityManager->flush();
-           return $this->redirectToRoute('app_gallery');
+           return $this->redirectToRoute('app_home');
         }
 
         return $this->render("painting/painting.html.twig", [
@@ -93,10 +97,49 @@ class PaintingController extends AbstractController
     }
 
     #[Route('/painting/view/{id<\d+>}', name: 'app_painting_view')]
-    public function paintingView(Painting $painting): Response
+    public function paintingView(CommentRepository $commentRepository,Painting $painting,HttpFoundationRequest $request,ManagerRegistry $doctrine): Response
     {
+        //On récupère les commentaires du tableau
+        $id=$painting->getId();
+        $comments=$commentRepository->findBy([
+            "painting"=>$id
+                ]);
+        
+        //On crée un nouveau commmentaire si le formulaire est rempli
+        $comment=new Comment();
+        $form=$this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $date=new DateTimeImmutable();
+            $date->format("d/m/Y");
+            $comment->setPublishedAt($date);
+            $comment->setPainting($painting);
+            $comment->setValidate(false);
+            $entityManager=$doctrine->getManager();
+            $entityManager->persist($comment);
+           $entityManager->flush();
+           return $this->redirectToRoute('app_painting_view',['id' => $painting->getId()]);
+        }
+
         return $this->render('painting/paintingView.html.twig', [
-            "painting"=>$painting
+            "painting"=>$painting,
+            "comments"=>$comments,
+            "form" => $form->createView()
         ]);
+    }
+
+    #[Route('/comment/validate/{id<\d+>}', name: 'app_comment_validate')]
+    public function validate(Comment $comment,ManagerRegistry $doctrine): Response
+    {
+        $validation=$comment->getValidate();
+        $comment->setValidate(!$validation);
+        $entityManager=$doctrine->getManager();
+        $entityManager->persist($comment);
+        $entityManager->flush();
+            
+    return new Response;
     }
 }

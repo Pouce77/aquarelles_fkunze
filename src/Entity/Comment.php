@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -20,8 +21,15 @@ class Comment
     #[ORM\Column(length: 255)]
     private ?string $user = null;
 
+    #[ORM\ManyToOne(targetEntity:Painting::class, inversedBy:"comment")]
+    #[ORM\JoinColumn(name: "comment_id", referencedColumnName: "id", onDelete: "CASCADE")]
+    private $painting;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $publishedAt = null;
+
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?bool $validate;
 
     public function getId(): ?int
     {
@@ -60,6 +68,46 @@ class Comment
     public function setPublishedAt(\DateTimeInterface $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of painting
+     */ 
+    public function getPainting():?Painting
+    {
+        return $this->painting;
+    }
+
+    /**
+     * Set the value of painting
+     *
+     * @return  self
+     */ 
+    public function setPainting($painting)
+    {
+        $this->painting = $painting;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of validate
+     */ 
+    public function getValidate(): ? bool
+    {
+        return $this->validate;
+    }
+
+    /**
+     * Set the value of validate
+     *
+     * @return  self
+     */ 
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
 
         return $this;
     }

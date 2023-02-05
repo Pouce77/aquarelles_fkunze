@@ -28,6 +28,9 @@ class Painting
     #[ORM\Column(length: 255)]
     private ?string $category = null;
 
+    #[ORM\OneToMany(targetEntity:Comment::class, mappedBy: "painting")]
+    private $comments;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,6 +100,26 @@ class Painting
     public function setCategory($category):self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of comments
+     */ 
+    public function getComments():?Comment
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set the value of comments
+     *
+     * @return  self
+     */ 
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
 
         return $this;
     }

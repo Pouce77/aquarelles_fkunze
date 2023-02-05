@@ -1,38 +1,97 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{painting.name}}
+{% block title %}
+	{{painting.name}}
 {% endblock %}
 
 {% block body %}
-  <div class="d-flex">
-  <div class="d-flex flex-column justify-content-start w-25 ms-5 mt-5">
-    <div class="border m-1 p-1">
-      <h6>Commentaire de Pierre Dupont</h6>
-      <p>Superbe tableau François !</p>
-       <small><i>Publié le 20/03/2021</i></small>
-    </div>
-     <div class="border m-1 p-1">
-      <h6>Commentaire de Pierre Dupont</h6>
-      <p>Superbe tableau François !</p>
-      <small>Publié le 20/03/2021</small>
-    </div>
-     <div class="border m-1 p-1">
-      <h6>Commentaire de Pierre Dupont</h6>
-      <p>Superbe tableau François !</p>
-       <small>Publié le 20/03/2021</small>
-    </div>
-  </div>
-	<div class=" w-75 m-2 d-flex justify-content-center flex-column">
-    <div class="d-flex justify-content-center">
-		  <button class="btn btn-primary m-2" id="buttonGrow">
-        <i class="bi bi-zoom-in"></i>
-		  </button>
-		  <button class="btn btn-primary m-2" id="buttonDimin">
-        <i class="bi bi-zoom-out"></i>
-      </button>
-    </div>
-		<div class="m-auto w-100 d-flex justify-content-center">
-			<img class="m-3 border p-3" style="height:60vh" id="imgPaint" src={{ asset('css/images/') ~ painting.image }} alt={{painting.name}}>
-		</div>
-	</div>
-  </div>
+	<body class="bg-secondary">
+		<div class="d-flex flex-column">
+			<div class=" w-auto d-flex justify-content-center flex-column">
+				<div class="d-flex justify-content-center">
+					<button class="btn btnColor text-light m-2" id="buttonGrow">
+						<i class="bi bi-zoom-in"></i>
+					</button>
+					<button class="btn btnColor text-light m-2" id="buttonDimin">
+						<i class="bi bi-zoom-out"></i>
+					</button>
+				</div>
+        <h1 class="text-center fontTitle text-light">{{painting.name}}</h1>
+				{% if is_granted('ROLE_USER') %}
+				<a href="" class="link-light text-center mt-2 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Commenter</a>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="exampleModalLabel">Votre commentaire sur {{painting.name}}</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								{{ form_start(form) }}
+								{{form_row(form.user,{'attr': {'value': app.user.username }})}}
+								{{form_row(form.content)}}
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+								<input class='btn btn-primary' type="submit" value="Envoyer pour validation"></input>
+								{{form_end(form)}}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				<div class="m-auto w-100 d-flex justify-content-center mb-4">
+					<img class="p-2 bg-light" style="height:60vh" id="imgPaint" src={{ asset('css/images/') ~ painting.image }} alt={{painting.name}}>
+				</div>
+				<div class="d-flex flex-column mb-5 border m-auto w-50 p-4">
+					<p class="text-light ">{{painting.description}}</p>
+					<small class="text-light">{{painting.technic}}</small>
+				</div>
+			</div>
+			{% if comments %}
+			<div class="d-flex flex-column justify-content-center w-50 p-5 m-auto comment">
+				{% for comment in comments %}
+				{% if (comment.validate == true) or (is_granted('ROLE_ADMIN')) %}
+				<div class="border m-1 p-3">
+					<div>
+						<h6>Commentaire de {{comment.user}}</h6>
+						<p>{{comment.content}}</p>
+						<small>
+							<i>Publié le
+								{{comment.publishedAt|date('d/m/Y')}}</i>
+						</small>
+					</div>	
+				</div>
+				{% elseif app.user and app.user.username == comment.user %}
+				<div class="border m-1 p-3">
+					<div>
+						<h6>Commentaire de {{comment.user}}</h6>
+						<p>{{comment.content}}</p>
+						<small>
+							<i>Publié le
+								{{comment.publishedAt|date('d/m/Y')}}</i>
+						</small>
+					</div>	
+				</div>					
+			</div>
+			{% endif %}
+			{% if (is_granted('ROLE_ADMIN')) %}
+       <div class="mb-3">
+			 {% if (comment.validate) %}
+        <div class="form-check form-switch">
+  				<input class="form-check-input" type="checkbox" role="switch" id={{comment.id}} onchange="mySubmit({{comment.id}})" checked>
+  				<label class="form-check-label" for="flexSwitchCheckDefault">Valider le commentaire</label>
+				</div>
+				{% else %}
+				<div class="form-check form-switch">
+  				<input class="form-check-input" type="checkbox" role="switch" id={{comment.id}} onchange="mySubmit({{comment.id}})">
+  				<label class="form-check-label" for="flexSwitchCheckDefault">Valider le commentaire</label>
+				</div>
+				{% endif %}
+       </div>
+			{% endif %}
+			{% endfor %}
+			</div>
+		{% endif %}
+		</div> 
+	</body>
+	<script src={{ asset('scripts/scriptPaintingView.js') }}></script>
 {% endblock %}

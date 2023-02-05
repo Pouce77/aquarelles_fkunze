@@ -19,7 +19,7 @@ class ContactType extends AbstractType
     {
         $builder
         ->add('Email',EmailType::class,[
-            "label" => "Email",
+            "label" => "Votre email",
             "required" => true,
             'constraints' => [new Length(['min' => 0, 'max' => 150,'minMessage' => 'L\'email ne peut être vide !','maxMessage' => 'La taille maximum est de 150 caractères !'])],
             'constraints' => [new Email(['message'=>'Vous devez entrer un email valide.'])]

@@ -9,29 +9,24 @@
 				<i class="bi bi-plus me-2"></i>Ajouter une aquarelle</a>
 		</div>
 	{% endif %}
-	<body class="backImg">
+	<body class="bg-secondary">
 		<div class="d-flex justify-content-around flex-wrap container mt-3">
 
 			{% for painting in paintings %}
 
-				<div class="card m-2 card-bs p-2 h-75">
+				<div class="card m-1 card-bs p-2 h-75">
 					{% if painting.image %}						
 						<a href="{{path('app_painting_view', {'id': painting.id})}}" class="m-auto"><img src= {{ asset('css/images/') ~ painting.image }} class="card-img-top"></a>
 					{% endif %}
 					<div class="card-body">
 						{% if painting.name %}
-							<h5 class="card-title">{{painting.name}}</h5>
+							<h5 class="card-title m-auto text-center">{{painting.name}}</h5>
 						{% endif %}
 					</div>
 					<div class="card-footer">
 						<small>
 							{{painting.technic}}</p>
 					</small>
-					{% if is_granted('ROLE_USER') %}
-					<small>
-							<a href="#">Commenter...</a></p>
-					</small>
-					{% endif %}
 				</div>
 				{% if is_granted('ROLE_ADMIN') %}
 					<button type="button" class="btn btn-danger m-1" id={{painting.id}} data-bs-toggle="modal" data-bs-target="#exampleModal">
