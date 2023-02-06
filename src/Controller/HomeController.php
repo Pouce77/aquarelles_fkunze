@@ -17,8 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ActualityRepository $actualityRepository): Response
+    public function index(ActualityRepository $actualityRepository, PaintingRepository $paintingRepository): Response
     {
+        $paintings=$paintingRepository->findAll();
+        dump($paintings);
         $actualities=$actualityRepository->findAll();
         $actuality1=end($actualities);
         if($actuality1){
@@ -27,7 +29,8 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            "actuality" => $actuality
+            "actuality" => $actuality,
+            "paintings" => $paintings
         ]);
     }
 
