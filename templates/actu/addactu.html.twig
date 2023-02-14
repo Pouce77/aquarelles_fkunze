@@ -6,6 +6,11 @@
 <div class="m-3 w-50 p-3 border border-primary rounded shadow">
     {{ form_start(form) }}
     {{form_rest(form) }}
-    <input class='btn btn-primary' type="submit" value="Ajouter l'actualité"></input>
+
+    {% if app.request.get('_route') == "app_actuality_add" %}
+        <input class='btn btn-primary' type="submit" value="Ajouter l'actualité"></input>
+    {% else %}
+         <input class='btn btn-primary' type="submit" value="Modifier l'actualité"></input>
+    {% endif %}
 </div>
 {% endblock %}

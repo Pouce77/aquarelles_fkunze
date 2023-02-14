@@ -5,7 +5,7 @@
 {% block body %}
 	{% if is_granted('ROLE_ADMIN') %}
 		<div class='d-flex justify-content-center'>
-			<a class='btn btn-primary m-3' href="/painting/add">
+			<a class='btn btn-primary m-3' href="/admin/oeuvres">
 				<i class="bi bi-plus me-2"></i>Ajouter une aquarelle</a>
 		</div>
 	{% endif %}
@@ -13,14 +13,15 @@
 		<div class="d-flex justify-content-around flex-wrap container mt-3">
 
 			{% for painting in paintings %}
-
-				<div class="card m-1 card-bs p-2 h-75">
+				<div class="card m-2 card-bs p-2 h-75">
 					{% if painting.image %}						
-						<a href="{{path('app_painting_view', {'id': painting.id})}}" class="m-auto"><img src= {{ asset('css/images/') ~ painting.image }} class="card-img-top"></a>
+						<a href="{{path('app_painting_view', {'id': painting.id})}}" class="m-auto">
+							<img src= {{ asset('css/images/') ~ painting.image }} class="card-img-top">
+						</a>
 					{% endif %}
 					<div class="card-body">
 						{% if painting.name %}
-							<h5 class="card-title m-auto text-center">{{painting.name}}</h5>
+							<h5 class="card-title m-auto text-center fontText">{{painting.name}}</h5>
 						{% endif %}
 					</div>
 					<div class="card-footer">
@@ -28,32 +29,6 @@
 							{{painting.technic}}</p>
 					</small>
 				</div>
-				{% if is_granted('ROLE_ADMIN') %}
-					<button type="button" class="btn btn-danger m-1" id={{painting.id}} data-bs-toggle="modal" data-bs-target="#exampleModal">
-						<i class="bi bi-trash3 me-2"></i>Supprimer
-					</button>
-					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="exampleModalLabel">Vous allez supprimer une aquarelle</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									En êtes-vous sûr ?
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-									<a id="delete" type="button" class="btn btn-primary" href="">Supprimer définitivement</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<a class="btn btn-warning m-1" href="{{path('app_painting_update', {'id': painting.id})}}">
-						<i class="bi bi-pencil-square me-2"></i>Modifier</a>
-				{% endif %}
 			</div>
 		{% endfor %}
 	</div>	

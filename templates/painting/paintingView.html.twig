@@ -46,9 +46,12 @@
 					<small class="text-light">{{painting.technic}}</small>
 				</div>
 			</div>
+
+			<!-- Commentaires -->
 			{% if comments %}
 			<div class="d-flex flex-column justify-content-center w-50 p-5 m-auto comment">
 				{% for comment in comments %}
+				<!-- Si le commentaire est validé ou si l'administrateur est loggué, on affiche le commentaire -->
 				{% if (comment.validate == true) or (is_granted('ROLE_ADMIN')) %}
 				<div class="border m-1 p-3">
 					<div>
@@ -60,6 +63,7 @@
 						</small>
 					</div>	
 				</div>
+				<!-- Si un utilisateur est loggué, on affiche les commentaire validé est ses propres commentaires en attente de validation -->
 				{% elseif app.user and app.user.username == comment.user %}
 				<div class="border m-1 p-3">
 					<div>
@@ -69,10 +73,15 @@
 							<i>Publié le
 								{{comment.publishedAt|date('d/m/Y')}}</i>
 						</small>
+						<br>
+						<small>
+							<i class="text-warning">En attente de modération...</i>
+						</small>
 					</div>	
 				</div>					
 			</div>
 			{% endif %}
+			<!-- Si l'administrateur est loggué, on affiche le bouton de validation' -->
 			{% if (is_granted('ROLE_ADMIN')) %}
        <div class="mb-3">
 			 {% if (comment.validate) %}
@@ -93,5 +102,6 @@
 		{% endif %}
 		</div> 
 	</body>
+	<!-- Script JS -->
 	<script src={{ asset('scripts/scriptPaintingView.js') }}></script>
 {% endblock %}

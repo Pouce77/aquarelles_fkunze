@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/baseAdmin.html.twig' %}
 
 {% block title %}Ajouter une aquarelle{% endblock %}
 
@@ -7,10 +7,10 @@
     {{ form_start(form) }}
     {{form_rest(form) }}
     
-    {% if route == "/painting/add" %}
-    <input class='btn btn-primary' type="submit" value="Ajouter l'aquarelle"></input>
+    {% if app.request.get('_route') == "app_painting_add" %}
+    <input class='btn btn-primary' type="submit" value="Ajouter l'oeuvre"></input>
     {% else %}
-         <input class='btn btn-primary' type="submit" value="Modifier l'aquarelle"></input>
+         <input class='btn btn-primary' type="submit" value="Modifier l'oeuvre"></input>
     {% endif %}
 </div>
 {% endblock %}

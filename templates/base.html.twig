@@ -43,13 +43,13 @@
 									</a>
 									<ul class="dropdown-menu dropdown-menu-end hover">
 										<li>
-											<a class="dropdown-item font bg-secondary" href="/gallery/aquarelles">Aquarelles</a>
+											<a class="dropdown-item font barColor" href="/gallery/aquarelles">Aquarelles</a>
 										</li>
 										<li>
-											<a class="dropdown-item font bg-secondary" href="/gallery/dessins">Dessins</a>
+											<a class="dropdown-item font barColor" href="/gallery/dessins">Dessins</a>
 										</li>
 										<li>
-											<a class="dropdown-item font bg-secondary" href="/gallery/videos">Vidéos</a>
+											<a class="dropdown-item font barColor" href="/gallery/videos">Vidéos</a>
 										</li>
 									</ul>
 								</li>
@@ -67,10 +67,10 @@
 								</li>
 								<li class="nav-item border rounded">
 									{% if app.user %}
-										<p class="text-center m-0">{{app.user.username}}</p>
-										<a class="nav-link text-light" href="/logout">Se déconnecter</a>
+										<p class="text-center pt-1 m-0 fontSmall">{{app.user.username}}</p>
+										<a class="nav-link text-light fontSmall" href="/logout">Se déconnecter</a>
 									{% else %}
-										<a class="nav-link font" href="/login">Se connecter</a>
+										<a class="nav-link font fontSmall" href="/login">Se connecter</a>
 									{% endif %}
 								</li>
 							</ul>
@@ -108,6 +108,11 @@
 				Site créé par
 				<a class="iconsocial" href="http://jkwebcreation.fr" target="blank">JKWebCreation</a>
 			</p>
+		</div>
+		<div class="text-center">
+			{% if is_granted('ROLE_ADMIN') %}
+			<a class="iconsocial" href="/admin">Administrer</a>
+			{% endif %}
 		</div>
 	</footer>
 	{% endblock %}

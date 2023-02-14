@@ -254,3 +254,6 @@ background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
 .btnColor:hover{
 	background-color: #3e3e3e;
 }
+.fontSmall{
+	font-size: small;
+}

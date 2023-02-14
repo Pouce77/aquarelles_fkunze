@@ -1,0 +1,23 @@
+@font-face {
+	font-family: 'JosefinSans';
+	src: url('fonts/JosefinSans-Regular.ttf') format('woff2'),
+		url('fonts/JosefinSans-Regular.ttf') format('truetype')
+}
+body{
+  height: 100vh;
+}
+li{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+  color:#686868;
+  font-family: 'JosefinSans';
+}
+a:hover{
+  color:#454545;
+}
+th,td{
+  padding: 5px;
+  text-align: center;
+}

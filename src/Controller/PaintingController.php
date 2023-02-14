@@ -9,11 +9,14 @@ use App\Form\PaintType;
 use App\Repository\CommentRepository;
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PaintingController extends AbstractController
@@ -73,7 +76,7 @@ class PaintingController extends AbstractController
         $em->remove($painting);
         $em->flush();
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_admin_oeuvres');
     }
 
     #[Route('/painting/update/{id<\d+>}', name: 'app_painting_update')]
@@ -87,7 +90,7 @@ class PaintingController extends AbstractController
         {
            $entityManager=$doctrine->getManager();
            $entityManager->flush();
-           return $this->redirectToRoute('app_home');
+           return $this->redirectToRoute('app_admin_oeuvres');
         }
 
         return $this->render("painting/painting.html.twig", [
@@ -97,7 +100,7 @@ class PaintingController extends AbstractController
     }
 
     #[Route('/painting/view/{id<\d+>}', name: 'app_painting_view')]
-    public function paintingView(CommentRepository $commentRepository,Painting $painting,HttpFoundationRequest $request,ManagerRegistry $doctrine): Response
+    public function paintingView(MailerInterface $mailer, CommentRepository $commentRepository,Painting $painting,HttpFoundationRequest $request,ManagerRegistry $doctrine): Response
     {
         //On récupère les commentaires du tableau
         $id=$painting->getId();
@@ -120,7 +123,22 @@ class PaintingController extends AbstractController
             $comment->setValidate(false);
             $entityManager=$doctrine->getManager();
             $entityManager->persist($comment);
-           $entityManager->flush();
+            $entityManager->flush();
+
+            $email = ((new TemplatedEmail()))
+            ->from('julienkunze@free.fr')
+            ->to('julienkunze0@gmail.com')
+            ->subject('Nouveau commentaire sur les aquarelles de François Kunzé')
+            ->htmlTemplate('email/newComment.html.twig')
+            ->context([
+                'oeuvre' => $comment->getPainting()->getName(),
+                'comment' => $comment->getContent(),
+                'name' => $comment->getUser()
+            ])
+            ;
+
+            $mailer->send($email);
+
            return $this->redirectToRoute('app_painting_view',['id' => $painting->getId()]);
         }
 
@@ -134,6 +152,8 @@ class PaintingController extends AbstractController
     #[Route('/comment/validate/{id<\d+>}', name: 'app_comment_validate')]
     public function validate(Comment $comment,ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
         $validation=$comment->getValidate();
         $comment->setValidate(!$validation);
         $entityManager=$doctrine->getManager();

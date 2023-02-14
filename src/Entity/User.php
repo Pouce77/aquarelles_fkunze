@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -35,7 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
 
         $this->passwordHasher=$passwordHasher;
-        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int

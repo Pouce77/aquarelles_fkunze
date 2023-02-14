@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Painting;
 use App\Form\ContactType;
 use App\Repository\ActualityRepository;
+use App\Repository\CommentRepository;
 use App\Repository\PaintingRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
@@ -20,13 +22,16 @@ class HomeController extends AbstractController
     public function index(ActualityRepository $actualityRepository, PaintingRepository $paintingRepository): Response
     {
         $paintings=$paintingRepository->findAll();
-        dump($paintings);
         $actualities=$actualityRepository->findAll();
-        $actuality1=end($actualities);
-        if($actuality1){
-        $actuality2=$actualities[array_search($actuality1,$actualities)-1];
-        $actuality=[$actuality1,$actuality2];
+        $count=count($actualities);
+        if($count>1){
+            $actuality1=end($actualities);
+            if($actuality1){
+                $actuality2=$actualities[array_search($actuality1,$actualities)-1];
+                $actuality=[$actuality1,$actuality2];
+            }
         }
+        $actuality=$actualities;
 
         return $this->render('home/index.html.twig', [
             "actuality" => $actuality,
@@ -74,9 +79,9 @@ class HomeController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new Email())
-            ->from('julienkunze@jkwebcreation.fr')
+            ->from('julienkunze@free.fr')
             ->to('julienkunze0@gmail.com')
-            ->subject('Nouveau message sur kunze.fr')
+            ->subject('Nouveau message sur les aquarelles de François Kunzé')
             ->text($request->request->all('contact')['message'])
             ->html('<p>'.$request->request->all('contact')['message'].'</p>')
         ;

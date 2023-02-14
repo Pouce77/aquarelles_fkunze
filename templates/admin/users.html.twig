@@ -1,0 +1,100 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block divSide %}
+
+<div class="w-75 m-3">
+		<h1 class="mb-3">Gestion des utilisateurs</h1>
+		<div class="w-75 m-auto">
+			<div class="d-flex justify-content-between bg-light p-2 align-items-center">
+				Utilisateurs
+			</div>		
+			{% for user in users %}
+				<div class="d-flex justify-content-between m-1 border bg-light p-2 align-items-center">
+				<div class="d-flex m-2 align-items-center">
+				  	<p class="ms-2 m-0"><strong>{{ user.username }}</strong></p>
+				</div>
+        <div class="d-flex m-2 align-items-center">
+				  	<p id="par{{user.id}}" class="ms-2 m-0 par">
+            {% set arrayRole = [] %}
+            {% for role in user.roles %}
+              {% if role == 'ROLE_ADMIN' %}
+                {% set arrayRole = arrayRole|merge(['Administrateur']) %}                
+              {% endif %}
+              {% if role == 'ROLE_USER' %}
+                {% set arrayRole = arrayRole|merge(['Utilisateur']) %}                
+              {% endif %}
+            {% endfor %}
+            {% dump(arrayRole) %}
+
+            {{arrayRole|join(', ')}}
+            </p>
+				</div>
+
+        <div>
+          <a style="text-decoration: underline; padding: 20px;" href="">Envoyer un mail pour changer le mot de passe</a>
+        </div>
+
+				<div class="m-2">
+					<a class="btn btn-warning m-1" id={{user.id}} data-bs-toggle="modal" data-bs-target="#roleModal">
+							<i class="bi bi-pencil-square"></i></a>
+          <!-- Modal roles-->
+					<div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les permissions de l'utilisateurs</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+                  <form id="formModal" action="{{path('app_user_update', {'id': user.id})}}" method="post">                 
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Administrateur" id="admin">
+                    <label class="form-check-label" for="">
+                      Administrateur
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Utilisateur" id="user">
+                    <label class="form-check-label" for="">
+                      Utilisateur
+                    </label>
+                  </div>
+                   <button id="submitButton" class="btn btn-primary m-2" type="submit">Modifier les permissions</button>
+                  </form>
+								</div>
+							</div>
+						</div>
+					</div>    
+
+					<button type="button" class="btn btn-danger m-1" id={{user.id}} data-bs-toggle="modal" data-bs-target="#userModal">
+							<i class="bi bi-trash3"></i>
+					</button>
+					<!-- Modal supprimer -->
+					<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-5" id="exampleModalLabel">Vous allez supprimer un utilisateur</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									En êtes-vous sûr ?
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+									<a id="deleteUser" type="button" class="btn btn-primary" href="">Supprimer définitivement</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>		
+			{% endfor %}		
+		</div>		
+	</div>
+  <footer class="fixed-bottom m-3">
+		<a style="text-decoration: underline; padding: 20px;" href="/">Retourner à la page d'accueil...</a>
+  </footer>
+
+{% endblock %}

@@ -65,10 +65,41 @@ class ActuController extends AbstractController
                 $em = $doctrine->getManager();
                 $em->persist($actuality);
                 $em->flush();
-                return $this->redirectToRoute("app_gallery");
+                return $this->redirectToRoute("app_home");
             }
     
         
+        return $this->render("actu/addactu.html.twig", [
+            "form" => $form->createView()
+        ]);
+    }
+
+    #[Route('/actuality/delete/{id<\d+>}', name: 'app_actuality_delete')]
+    public function delete(Actuality $actuality, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $em=$doctrine->getManager();
+        $em->remove($actuality);
+        $em->flush();
+
+        return $this->redirectToRoute('app_admin_actualities');
+    }
+
+    #[Route('/actuality/update/{id<\d+>}', name: 'app_actuality_update')]
+    public function update(HttpFoundationRequest $request,Actuality $actuality, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $form=$this->createForm(ActuType::class, $actuality);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+           $entityManager=$doctrine->getManager();
+           $entityManager->flush();
+           return $this->redirectToRoute('app_admin_actualities');
+        }
+
         return $this->render("actu/addactu.html.twig", [
             "form" => $form->createView()
         ]);

@@ -26,7 +26,7 @@ class CommentType extends AbstractType{
             "required" => true
           ])
           ->add('content',TextareaType::class,[
-            "label"=>"Description",
+            "label"=>"Votre commentaire",
             "required" => true,
             'constraints' => [new NotBlank(['message' => 'Le commentaire ne peut pas être vide !'])],
             'constraints' => [new Length(['min' => 5, 'max' => 320,'minMessage' => 'La taille du contenu est comprise entre 5 et 320 caractères !','maxMessage' => 'La taille du contenu est comprise entre 5 et 320 caractères !'])]

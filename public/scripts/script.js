@@ -8,22 +8,31 @@ const togglePassword = () => {
   eyeSlashIcon.classList.contains("d-none") ? eyeSlashIcon.classList.remove("d-none") : eyeSlashIcon.classList.add("d-none")
 }
 
-//Opening modal for deleting image in gallery
+//Opening modal for deleting image or actuality
 let id="";
 const buttons=document.querySelectorAll('.btn-danger');
 for(let i = 0; i < buttons.length;i++) {
   buttons[i].addEventListener('click', function(){
     id=(buttons[i].getAttribute('id'));
+    console.log(id);
   });
 }
 document.addEventListener("shown.bs.modal",function(e) {
   const modalButton = document.querySelector("#delete");
+  const modalButtonActu =document.querySelector('#deleteActu');
+
   if (modalButton!==null){
-  modalButton.setAttribute('href','/painting/delete/'+id);
+    modalButton.setAttribute('href','/painting/delete/'+id);
+  }
+  if (modalButtonActu!==null){
+    modalButtonActu.setAttribute('href','/actuality/delete/'+id);
   }
 })
 
+
 const img = document.getElementById("imgPaint");
+
+if (img!=null) {
 let onLoadHeight=img.clientHeight;
 
 // agrandir la hauteur de l'image
@@ -48,3 +57,4 @@ const buttonGrow=document.getElementById("buttonGrow");
      img.style.height=heightImg-((heightImg*10)/100)+"px"; 
     }
   })
+}
