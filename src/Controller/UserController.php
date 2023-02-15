@@ -37,7 +37,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/user/delete/{id<\d+>}', name: 'app_painting_delete')]
+    #[Route('/user/delete/{id<\d+>}', name: 'app_user_delete')]
     public function deleteUser(User $user, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
