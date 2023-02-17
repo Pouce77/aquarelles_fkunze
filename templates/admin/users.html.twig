@@ -4,16 +4,16 @@
 
 <div class="w-75 m-3">
 		<h1 class="mb-3">Gestion des utilisateurs</h1>
-		<div class="w-75 m-auto">
+		<div class="w-100 m-auto">
 			<div class="d-flex justify-content-between bg-light p-2 align-items-center">
 				Utilisateurs
 			</div>		
 			{% for user in users %}
-				<div class="d-flex justify-content-between m-1 border bg-light p-2 align-items-center">
-				<div class="d-flex m-2 align-items-center">
+				<div class="d-flex justify-content-between mt-4 border bg-light p-2 align-items-center">
+					<div class="d-flex m-2 align-items-center">
 				  	<p class="ms-2 m-0"><strong>{{ user.username }}</strong></p>
-				</div>
-        <div class="d-flex m-2 align-items-center">
+					</div>
+        	<div class="d-flex m-2 align-items-center">
 				  	<p id="par{{user.id}}" class="ms-2 m-0 par">
             {% set arrayRole = [] %}
             {% for role in user.roles %}
@@ -28,12 +28,8 @@
 
             {{arrayRole|join(', ')}}
             </p>
-				</div>
-
-        <div>
-          <a style="text-decoration: underline; padding: 20px;" href="">Envoyer un mail pour changer le mot de passe</a>
-        </div>
-
+					</div>
+          
 				<div class="m-2">
 					<a class="btn btn-warning m-1" id={{user.id}} data-bs-toggle="modal" data-bs-target="#roleModal">
 							<i class="bi bi-pencil-square"></i></a>
@@ -87,14 +83,10 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-			</div>		
+			</div>	
+			<a style="text-decoration: underline; padding: 10px;font-size:small;" href="">Réinitialiser le mot de passe</a>	
 			{% endfor %}		
 		</div>		
 	</div>
-  <footer class="fixed-bottom m-3">
-		<a style="text-decoration: underline; padding: 20px;" href="/">Retourner à la page d'accueil...</a>
-  </footer>
-
 {% endblock %}

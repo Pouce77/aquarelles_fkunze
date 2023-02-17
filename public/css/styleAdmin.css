@@ -5,6 +5,8 @@
 }
 body{
   height: 100vh;
+  padding:0;
+  margin-bottom: 0;
 }
 li{
   list-style-type: none;
@@ -20,4 +22,72 @@ a:hover{
 th,td{
   padding: 5px;
   text-align: center;
+}
+.par{
+  font-size: small;
+}
+.navBarAdmin{
+  width:100%;
+}
+.divPage{
+  flex-direction: column;
+  align-items: center;
+}
+h1{
+  text-align: center;
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) { 
+  .divPage{
+    align-items: center;
+    flex-direction: column;
+  }
+    .navBarAdmin{
+      width:100%;
+    }
+  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  .divPage{
+    flex-direction: column;
+    align-items: center;
+  }
+  .navBarAdmin{
+    width:100%;
+  }
+ }
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+  .divPage{
+    flex-direction:row;
+    align-items: normal;
+  }
+  .navBarAdmin{
+    width:25%;
+  }
+ }
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+  .divPage{
+    flex-direction:row;
+    align-items: normal;
+  }
+  .navBarAdmin{
+    width:25%;
+  }
+  }
+
+/* XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) { 
+  .divPage{
+    flex-direction:row;
+    align-items: normal;
+  }
+  .navBarAdmin{
+    width:25%;
+  }
 }

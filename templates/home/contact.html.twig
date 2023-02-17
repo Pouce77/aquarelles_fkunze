@@ -3,18 +3,19 @@
 {% block body %}
 <body class="bg-secondary text-light">
 	<h1 class="fontTitle text-center mt-5">Laissez-moi un message</h1>
-	<div class="divContact">
-		<div class="text-dark m-3 w-25 p-3 border border-light rounded shadow comment">
+	<div class="divContact m-3">
+		<div class="text-dark m-auto w-50 p-3 border border-light rounded shadow comment">
 			{{ form_start(form)}}
 			{% if app.user %}
 				{{form_row(form.Email,{'attr': {'value':app.user.email }}) }}
 			{% else %}
 				{{form_row(form.Email)}}
 			{% endif %}
+			{{ form_row(form.message,{'attr': {'rows':'7'}}) }}
 			{{ form_rest(form)}}
 			<input class='btn btn-primary' type="submit" value="Envoyer à François Kunzé"></input>
 	  </div>
-		<img class="rounded w-25 align-self-center m-2" src="css/images/magne3.jpg" alt="François Kunzé">
+		<img class="rounded w-25 align-self-center m-2 mb-5" src="css/images/magne3.jpg" alt="François Kunzé">
   </div>
 </body>	
 {% endblock %}
