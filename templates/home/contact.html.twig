@@ -7,11 +7,13 @@
 		<div class="text-dark m-auto w-50 p-3 border border-light rounded shadow comment">
 			{{ form_start(form)}}
 			{% if app.user %}
-				{{form_row(form.Email,{'attr': {'value':app.user.email }}) }}
+				{{form_row(form.username,{'attr': {'value':app.user.username }}) }}
+				{{ form_row(form.email,{'attr': {'value':app.user.email}})}}
 			{% else %}
-				{{form_row(form.Email)}}
+				{{form_row(form.username)}}
+				{{ form_row(form.email)}}
 			{% endif %}
-			{{ form_row(form.message,{'attr': {'rows':'7'}}) }}
+			{{ form_row(form.message,{'attr': {'rows':'5'}}) }}
 			{{ form_rest(form)}}
 			<input class='btn btn-primary' type="submit" value="Envoyer à François Kunzé"></input>
 	  </div>

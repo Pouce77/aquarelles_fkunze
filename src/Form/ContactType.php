@@ -18,21 +18,26 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('Email',EmailType::class,[
+        ->add('username',TextType::class,[
+            "label" => "Votre nom",
+            "required" => true,
+            'constraints' => [new Length(['min' => 2, 'max' => 150,'minMessage' => 'La taille minimale est de 2 caractères !','maxMessage' => 'La taille maximum est de 150 caractères !'])],
+            'constraints' => [new NotBlank(['message' => 'Le nom ne peut pas être vide !'])],
+        ])
+
+        ->add('email',EmailType::class,[
             "label" => "Votre email",
             "required" => true,
-            'constraints' => [new Length(['min' => 0, 'max' => 150,'minMessage' => 'L\'email ne peut être vide !','maxMessage' => 'La taille maximum est de 150 caractères !'])],
-            'constraints' => [new Email(['message'=>'Vous devez entrer un email valide.'])]
-         
-            ])
+            'constraints' => [new Length(['min' => 2, 'max' => 150,'minMessage' => 'La taille minimale est de 2 caractères !','maxMessage' => 'La taille maximum est de 150 caractères !'])],
+            'constraints' => [new Email(['message' => 'Le mail n\'est pas valide'])]
+        ])
          
           ->add('message',TextareaType::class,[
             "label"=>"Votre message",
             "required" => true,
             'constraints' => [new NotBlank(['message' => 'Le contenu du message ne peut pas être vide !'])],
             'constraints' => [new Length(['min' => 5, 'max' => 400,'minMessage' => 'La taille du contenu est comprise entre 5 et 400 caractères !','maxMessage' => 'La taille du contenu est comprise entre 5 et 320 caractères !'])]
-
-          ])
+        ])
         ;
     }
 

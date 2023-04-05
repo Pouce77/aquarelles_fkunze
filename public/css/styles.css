@@ -13,6 +13,10 @@ body{
 	margin-right: 25px;
 	margin-left: 15px;
 }
+.flexConfig{
+	display:flex;
+	flex-direction: column;
+}
 .fontTitle{
 	font-size: 36px;
 	font-family: 'JosefinSans', sans-serif;
@@ -81,7 +85,8 @@ width: auto;
 		flex-direction: column-reverse;
 		justify-content: space-between;
 	}
-	.actu{
+	.flexConfig{
+		display: flex;
 		flex-direction: column;
 	}
 }
@@ -140,9 +145,10 @@ width: auto;
 			flex-direction: row;
 			justify-content: space-between;
 		}
-		.actu{
+		.flexConfig{
+			display: flex;
 			flex-direction: row;
-		}	
+		}
  }
 
 /* X-Large devices (large desktops, 1200px and up)*/
@@ -169,7 +175,8 @@ width: auto;
 			flex-direction: row;
 			justify-content: space-between
 		}
-		.actu{
+		.flexConfig{
+			display: flex;
 			flex-direction: row;
 		}
   }
@@ -198,7 +205,8 @@ width: auto;
 		flex-direction: row;
 		justify-content: space-around;
 	}
-	.actu{
+	.flexConfig{
+		display: flex;
 		flex-direction: row;
 	}
 }

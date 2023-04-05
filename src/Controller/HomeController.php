@@ -9,6 +9,7 @@ use App\Repository\CommentRepository;
 use App\Repository\PaintingRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Id;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,12 +79,17 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $email = (new Email())
+            $email = (new TemplatedEmail())
             ->from('julienkunze@free.fr')
             ->to('julienkunze0@gmail.com')
             ->subject('Nouveau message sur les aquarelles de François Kunzé')
             ->text($request->request->all('contact')['message'])
-            ->html('<p>'.$request->request->all('contact')['message'].'</p>')
+            ->htmlTemplate('email/newContact.html.twig')
+            ->context([
+                'message' => $request->request->all('contact')['message'],
+                'name' => $request->request->all('contact')['username'],
+                'emailUser' => $request->request->all('contact')['email']
+            ])
         ;
 
         $mailer->send($email);

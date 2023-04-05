@@ -24,8 +24,7 @@
                 {% set arrayRole = arrayRole|merge(['Utilisateur']) %}                
               {% endif %}
             {% endfor %}
-            {% dump(arrayRole) %}
-
+						
             {{arrayRole|join(', ')}}
             </p>
 					</div>

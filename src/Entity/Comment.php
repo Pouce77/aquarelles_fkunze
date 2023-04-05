@@ -21,7 +21,7 @@ class Comment
     #[ORM\Column(length: 255)]
     private ?string $user = null;
 
-    #[ORM\ManyToOne(targetEntity:Painting::class, inversedBy:"comment")]
+    #[ORM\ManyToOne(targetEntity:Painting::class, inversedBy:"comments")]
     #[ORM\JoinColumn(name: "comment_id", referencedColumnName: "id", onDelete: "CASCADE")]
     private $painting;
 
