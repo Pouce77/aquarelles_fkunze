@@ -65,6 +65,11 @@
 								<li class="nav-item">
 									<a class="nav-link font" href="/contact">Contact</a>
 								</li>
+								<li class="nav-item border rounded me-2">
+									{% if is_granted('ROLE_ADMIN') %}
+										<a class="nav-link font fontSmall" href="/admin">Administrer</a>
+									{% endif %}
+								</li>
 								<li class="nav-item border rounded">
 									{% if app.user %}
 										<p class="text-center pt-1 m-0 fontSmall">{{app.user.username}}</p>
@@ -110,11 +115,6 @@
 					<a class="iconsocial" href="http://jkwebcreation.fr" target="blank">JKWebCreation</a>
 				</small>
 			</p>
-		</div>
-		<div class="text-center">
-			{% if is_granted('ROLE_ADMIN') %}
-			<a class="iconsocial" href="/admin">Administrer</a>
-			{% endif %}
 		</div>
 	</footer>
 	{% endblock %}
