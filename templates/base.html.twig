@@ -65,7 +65,7 @@
 								<li class="nav-item">
 									<a class="nav-link font" href="/contact">Contact</a>
 								</li>
-								<li class="nav-item border rounded me-2">
+								<li class="nav-item border rounded m-2">
 									{% if is_granted('ROLE_ADMIN') %}
 										<a class="nav-link font fontSmall" href="/admin">Administrer</a>
 									{% endif %}
@@ -73,7 +73,7 @@
 								<li class="nav-item border rounded">
 									{% if app.user %}
 										<p class="text-center pt-1 m-0 fontSmall">{{app.user.username}}</p>
-										<a class="nav-link text-light fontSmall" href="/logout">Se déconnecter</a>
+										<a class="nav-link font fontSmall" href="/logout">Se déconnecter</a>
 									{% else %}
 										<a class="nav-link font fontSmall" href="/login">Se connecter</a>
 									{% endif %}
@@ -103,7 +103,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link iconsocial" href="#" target="blank">
+				<a class="nav-link iconsocial" href="https://instagram.com/francoiskunze?igshid=NTc4MTIwNjQ2YQ==" target="blank">
 					<i class="bi bi-instagram"></i>
 				</a>
 			</li>

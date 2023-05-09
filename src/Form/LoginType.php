@@ -5,10 +5,8 @@ namespace App\Form;
 use App\Entity\Post;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -19,13 +17,13 @@ class LoginType extends AbstractType{
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-          ->add('username',TextType::class,[
-            "label" => "Nom d'utilisateur",
+          ->add('email',EmailType::class,[
+            "label" => "Email",
             "required" => true,
             //'row_attr' => ['class' => 'nom', 'id' => 'name'],
             "constraints" => [
-              new Length(["min" => 2, "max" => 180, "minMessage" => "Le nom d'utilisateur ne doit pas faire moins de 2 caractères", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 180 caractères"]),
-              new NotBlank(["message" => "Le nom d'utilisateur ne doit pas être vide !"])
+              new Length(["min" => 2, "max" => 180, "minMessage" => "L'email ne doit pas faire moins de 2 caractères", "maxMessage" => "L'email' ne doit pas faire plus de 180 caractères"]),
+              new NotBlank(["message" => "L'email' ne doit pas être vide !"])
               ]
           ])
           ->add('password',PasswordType::class,[

@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<div class="m-3 w-50 p-3 border border-primary rounded shadow">
+	<div class="m-auto mt-5 w-50 p-3 border border-primary rounded shadow">
 		{{ form_start(form, {'attr': {'class': 'container'}}) }}
 		{{form_row(form.username)}}
 		{{form_row(form.email)}}
