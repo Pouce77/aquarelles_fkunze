@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Actuality;
 use App\Form\ActuType;
 use App\Repository\ActualityRepository;
+use App\Repository\PublicationRepository;
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,12 +19,14 @@ class ActuController extends AbstractController
 {
 
     #[Route('/actuality', name: 'app_actuality')]
-    public function actuality(ActualityRepository $actualityRepository): Response
+    public function actuality(ActualityRepository $actualityRepository, PublicationRepository $publicationRepository): Response
     {
 
-        $actualities = $actualityRepository->findAll(); // SELECT * FROM `actuality`;
+        $actualities = $actualityRepository->findAll(); // SELECT * FROM `actuality`
+        $publications=$publicationRepository->findAll(); // SELECT * FROM `publications`
         return $this->render("home/actualite.html.twig", [
-           "actualities"=>$actualities
+           "actualities"=>$actualities,
+           "publications"=>$publications
         ]);
 
     }
