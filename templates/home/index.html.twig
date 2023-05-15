@@ -37,7 +37,7 @@
 			<div class="flexConfig row justify-content-evenly">
 				{% if actuality %}
 					{% for actu in actuality %}
-				<div class="d-flex p-5 rounded align-items-center actu col">
+				<div class="d-flex p-5 rounded align-items-center actu col-lg-6 col-12">
 				{% if actu.image %}				
 					<div>
 						<img class="imgActu me-2 ms-2 rounded shadow" src={{ asset('css/images/' ~ actu.image) }} alt="Actualité principale">

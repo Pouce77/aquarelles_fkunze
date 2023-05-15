@@ -21,6 +21,14 @@ class PaintingCrudController extends AbstractCrudController
         return Painting::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+    return $crud
+       
+        ->setPageTitle('index', 'Oeuvres');
+
+    }
+
     
     public function configureFields(string $pageName): iterable
     {

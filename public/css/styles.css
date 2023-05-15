@@ -1,5 +1,5 @@
 body{
-	min-height: 100%;
+	max-height: 100%;
 	margin-bottom: 150px;
 }
 @font-face {
@@ -245,9 +245,13 @@ background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
 	background: none;
 }
 .imgActu{
-	max-height: 150px;
+	max-height: 200px;
 	width: auto;
 }
+.imgActu:hover{
+	cursor: pointer;
+}
+
 .card-img-top{
 	height: 150px;
 	width: auto;
@@ -264,4 +268,13 @@ background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
 }
 .fontSmall{
 	font-size: small;
+}
+
+.divModal{
+	width:100%;
+	height:auto;
+}
+.imgModal{
+	max-width: 100%;
+	max-height: 100%;
 }

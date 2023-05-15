@@ -5,18 +5,18 @@
 
 {% block body %}
 	<body class="bg-secondary">
-	<div class=row>
-		<div class="col-12 col-lg-6">
+	<div class="row m-2 justify-content-around">
+		<div class="col-12 col-lg-5">
 			<h1 class="text-center m-3 fontTitle text-light">Actualités</h1>
 			<div class="container">
 				<div class="row m-2 justify-content-start">
 					<!-- loop on the actualities passed in parameters of the controller-->
 					{% for actuality in actualities %}
-						<div class="border-top d-flex flex-row m-3 pt-3 col-10 col-sm-5 col-md-5">
+						<div class="border-top d-flex flex-column m-3 pt-3">
 							{% if actuality.image %}
-								<a data-bs-toggle="modal" data-bs-target="#eModal">
-									<img id="imgActu" class="m-2 imgActu" src={{ asset('css/images/' ~ actuality.image) }}>
-								</a>
+							<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+								<img id="imgActu" class="m-2 imgActu" src={{ asset('css/images/' ~ actuality.image) }} onclick="clickimgActu(this)">
+							</a>
 								<div class="d-flex flex-column ms-3 w-75 text-light">
 									<h6>
 										{{actuality.title}}
@@ -30,7 +30,7 @@
 								</div>
 							</div>
 						{% else %}
-							<div class="d-flex flex-column ms-3 w-100 text-light">
+							<div class="d-flex flex-column ms-3 w-75 text-light">
 								<h6>
 									{{actuality.title}}
 								</h6>
@@ -41,14 +41,6 @@
 									Publié le
 									{{actuality.publishedAt|date('d/m/Y')}}
 								</small>
-								{% if is_granted('ROLE_ADMIN') %}
-									<a class="btn btn-warning m-1" href="#">
-										<i class="bi bi-pencil-square me-2"></i>Modifier
-									</a>
-									<a class="btn btn-danger m-1" href="#">
-										<i class="bi bi-trash3 me-2"></i>Supprimer
-									</a>
-								{% endif %}
 							</div>
 						</div>
 					{% endif %}
@@ -56,17 +48,21 @@
 			</div>
 		</div>
 	</div>
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 			<h1 class="text-center m-3 fontTitle text-light">Publications</h1>
 			<div class="container">
 			{% for publication in publications %}
-					{% set images = publication.images %}
 						<div class="row m-2 justify-content-start">
+							{% if publication.images %}
 								<div class="d-flex flex-row justify-content-start border-top m-3 pt-3">
+								{% set images = publication.images %}
 								{% for image in images %}
-									<img class="m-2 imgActu" src= {{ asset('css/images/') ~ image }} alt="image de publication">
+								<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+									<img class="m-2 imgActu" src= {{ asset('css/images/') ~ image }} alt="image de publication" onclick="clickimgActu(this)">
+								</a>
 								{% endfor %}
 								</div>
+							{% endif %}
 								<div class="d-flex flex-column ms-3 w-75 text-light">
 									<h6>
 										{{publication.title}}
@@ -83,5 +79,20 @@
 			</div>
 			</div>
 	</div>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-xl">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="divModal">
+								<img id="imgModal" class='imgModal' src="" alt="image de la modale">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 </body>
 {% endblock %}

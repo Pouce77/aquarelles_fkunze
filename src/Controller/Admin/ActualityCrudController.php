@@ -21,6 +21,13 @@ class ActualityCrudController extends AbstractCrudController
         return Actuality::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+    return $crud
+       
+        ->setPageTitle('index', 'Actualités');
+
+    }
     
     public function configureFields(string $pageName): iterable
     {
