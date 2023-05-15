@@ -4,8 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Actuality;
 use App\Entity\Comment;
+use App\Entity\Link;
 use App\Entity\Painting;
 use App\Entity\Publication;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -55,5 +57,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comment::class);
         yield MenuItem::linkToCrud('Actualités', 'fas fa-newspaper', Actuality::class);
         yield MenuItem::linkToCrud('Publications', 'fas fa-newspaper', Publication::class);
+        yield MenuItem::linkToCrud('Liens', 'fas fa-link', Link::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
     }
 }

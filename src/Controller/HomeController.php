@@ -6,6 +6,7 @@ use App\Entity\Painting;
 use App\Form\ContactType;
 use App\Repository\ActualityRepository;
 use App\Repository\CommentRepository;
+use App\Repository\LinkRepository;
 use App\Repository\PaintingRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Id;
@@ -106,7 +107,17 @@ class HomeController extends AbstractController
         $paintings = $paintingRepository->findAll(); // SELECT * FROM `painting`;
 
         return $this->render('home/presentation.html.twig', [
-            "paintings"=>$paintings,
+            "paintings"=>$paintings
+        ]);
+    }
+
+    #[Route('/liens', name: 'app_liens')]
+    public function liens(LinkRepository $linkRepository): Response
+    {
+        $links=$linkRepository->findAll(); // SELECT * FROM `link`;
+
+        return $this->render('home/liens.html.twig',[
+            "links"=>$links
         ]);
     }
 }

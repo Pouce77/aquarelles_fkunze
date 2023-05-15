@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Actualités
+{% endblock %}
+
+{% block body %}
+<body class="bg-secondary">
+  <div class="container">
+   <div class="m-3 pb-5 bg-secondary bg-opacity-25">
+			<h1 class="fontTitle text-center p-2 pb-2">
+				Liens
+			</h1>
+			<div class="flexConfig row justify-content-evenly">
+				{% if links %}
+					{% for link in links %}
+				<div class="d-flex p-5 rounded align-items-center actu col-lg-6 col-12">
+					<div class="bg-white p-3 rounded shadow d-flex flex-column align-items-center mt-3 mb-3 w-100">
+						<h6>
+							{{link.title}}
+						</h6>
+						<br>
+						<p>
+							{{link.content}}
+						</p>
+            <p>
+							<a href={{link.url}} target="_blank"><i>{{link.url}}</i></a>
+						</p>
+					</div>
+				</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+  </div>
+</body>
+{% endblock %}
