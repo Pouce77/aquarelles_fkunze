@@ -213,6 +213,12 @@ width: auto;
 
 .iconsocial,.barColor,.font{
   color: #FFFFFF;
+	text-decoration:none;
+}
+
+.iconsocial:hover{
+	cursor: pointer;
+	color: #3e3e3e;
 }
 .posTitle{
 	width:fit-content;

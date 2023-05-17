@@ -14,6 +14,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
@@ -93,11 +94,29 @@ class HomeController extends AbstractController
             ])
         ;
 
-        $mailer->send($email);
+        try {
+            $mailer->send($email);
+            return $this->render("home/contact.html.twig", [
+
+                "message" => "Votre message a bien été envoyé !"
+            ]);
+
+        } catch (TransportExceptionInterface $e) {
+            // some error prevented the email sending; display an
+            // error message or try to resend the message
+            return $this->render("home/contact.html.twig", [
+
+                "message" => "Une erreur s'est produite lors de l'envoi de votre message."
+            ]);
+            
+        }
+        
+        
         }
 
         return $this->render("home/contact.html.twig", [
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "message" => ""
         ]);
     }
 
