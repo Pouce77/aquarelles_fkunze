@@ -18,13 +18,21 @@ class LinkCrudController extends AbstractCrudController
         return Link::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+    return $crud
+       
+        ->setPageTitle('index', 'Liens');
+
+    }
+
     
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('title'),
-            TextareaField::new('content'),
+            TextField::new('title')->setLabel('Titre'),
+            TextareaField::new('content')->setLabel('Contenu'),
             TextField::new('url')
         ];
     }
