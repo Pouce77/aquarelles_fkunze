@@ -101,7 +101,7 @@ class HomeController extends AbstractController
                 "message" => "Votre message a bien été envoyé !"
             ]);
 
-        } catch (TransportExceptionInterface $e) {
+         } catch (TransportExceptionInterface $e) {
             // some error prevented the email sending; display an
             // error message or try to resend the message
             return $this->render("home/contact.html.twig", [
