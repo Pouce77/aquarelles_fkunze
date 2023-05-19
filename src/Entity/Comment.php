@@ -29,7 +29,7 @@ class Comment
     private ?\DateTimeInterface $publishedAt = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
-    private ?bool $validate;
+    private ?bool $validate=false;
 
     public function getId(): ?int
     {

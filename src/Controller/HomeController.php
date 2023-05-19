@@ -82,7 +82,7 @@ class HomeController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new TemplatedEmail())
-            ->from('julienkunze@free.fr')
+            ->from('no-reply@francoiskunze.jkwebcreation.fr')
             ->to('julienkunze0@gmail.com')
             ->subject('Nouveau message sur les aquarelles de François Kunzé')
             ->text($request->request->all('contact')['message'])
@@ -96,27 +96,21 @@ class HomeController extends AbstractController
 
         try {
             $mailer->send($email);
-            return $this->render("home/contact.html.twig", [
-
-                "message" => "Votre message a bien été envoyé !"
+            $this->addFlash('success','Votre message a été envoyé avec succés !');
+            return $this->render("home/contact.html.twig",[
+                'form'=>$form->createView()
             ]);
-
          } catch (TransportExceptionInterface $e) {
             // some error prevented the email sending; display an
-            // error message or try to resend the message
-            return $this->render("home/contact.html.twig", [
-
-                "message" => "Une erreur s'est produite lors de l'envoi de votre message."
-            ]);
-            
+            // error message or try to resend the messagE
+            $this->addFlash('danger',"Une erreur s'est produite lors de l'envoi de votre message !");            
         }
         
         
         }
 
         return $this->render("home/contact.html.twig", [
-            "form" => $form->createView(),
-            "message" => ""
+            "form" => $form->createView()
         ]);
     }
 

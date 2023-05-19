@@ -2,11 +2,6 @@
 
 {% block body %}
 <body class="bg-secondary text-light">
-{% if message %}
-	<h4 class="m-5 text-light text-center">{{message}}</h4>
-	<a class="iconsocial" href="/"><p class="m-5 text-center">Retourner à l'accueil du site</p></a>
-{% endif %}
-{% if message == "" %}
 	<h1 class="fontTitle text-center mt-2">Laissez-moi un message</h1>
 	<div class="divContact m-3">
 		<div class="text-dark col-lg-6 col-12 m-auto p-3 border border-light rounded shadow comment">
@@ -24,6 +19,5 @@
 	  </div>
 		<img class="rounded col-lg-5 col-12 align-self-center" src="css/images/magne3.jpg" alt="François Kunzé">
   </div>
-	{% endif %}
 </body>	
 {% endblock %}
