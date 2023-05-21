@@ -9,6 +9,7 @@ const togglePassword = () => {
 }
 
 //Opening modal for deleting image or actuality
+
 let id="";
 const buttons=document.querySelectorAll('.btn-danger');
 for(let i = 0; i < buttons.length;i++) {

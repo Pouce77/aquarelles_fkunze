@@ -39,7 +39,7 @@ class PaintingCrudController extends AbstractCrudController
             TextareaField::new('technic')->setLabel('Technique'),
             ImageField::new('image')
                 ->setBasePath('css/images')
-                ->setUploadDir('public/css/images')
+                ->setUploadDir('css/images')
                 ->setLabel('Image'),
             ChoiceField::new('Category')
             ->setChoices([

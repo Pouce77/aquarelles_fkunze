@@ -37,7 +37,7 @@ class ActualityCrudController extends AbstractCrudController
             TextareaField::new('content')->setLabel('Contenu'),
             ImageField::new('image')
                 ->setBasePath('css/images')
-                ->setUploadDir('public/css/images')
+                ->setUploadDir('css/images')
                 ->setLabel('Image'),
             DateTimeField::new('publishedAt')->setLabel('Publié le')
         ];

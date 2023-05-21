@@ -37,7 +37,7 @@ class PublicationCrudController extends AbstractCrudController
             TextareaField::new('content')->setLabel('Contenu'),
             ImageField::new('images')
                 ->setBasePath('css/images')
-                ->setUploadDir('public/css/images')
+                ->setUploadDir('css/images')
                 ->setLabel('Image(s)')
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
                 ->setFormTypeOptions([
