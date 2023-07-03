@@ -3,12 +3,6 @@
 {% endblock %}
 
 {% block body %}
-	{% if is_granted('ROLE_ADMIN') %}
-		<div class='d-flex justify-content-center'>
-			<a class='btn btn-primary m-3' href="/admin/oeuvres">
-				<i class="bi bi-plus me-2"></i>Ajouter une aquarelle</a>
-		</div>
-	{% endif %}
 	<body class="bg-secondary">
 		<div class="d-flex justify-content-around flex-wrap container mt-3">
 
