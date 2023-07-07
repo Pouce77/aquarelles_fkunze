@@ -106,20 +106,20 @@ class UserController extends AbstractController
             $url=$this->generateUrl('reset_password',['token' =>$token],UrlGeneratorInterface::ABSOLUTE_URL);
 
             $email = (new TemplatedEmail())
-            ->from('no-reply@francoiskunze.jkwebcreation.fr')
+            ->from('julienkunze@free.fr')
             ->to($form->get('email')->getData())
             ->subject('Réinitialisation de votre mot de passe sur le site des aquarelles de François Kunzé')
             ->htmlTemplate('email/resetPasswordRequestEmail.html.twig')
             ->context([
                 'url' => $url
             ]);
-            }
 
             $mailer->send($email);
 
             return $this->render('security/mailSuccess.html.twig',[
                 'formReset'=>$form
             ]);
+            }
             
         }
 
