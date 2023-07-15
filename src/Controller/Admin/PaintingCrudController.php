@@ -20,16 +20,11 @@ class PaintingCrudController extends AbstractCrudController
     {
         return Painting::class;
     }
-
     public function configureCrud(Crud $crud): Crud
     {
     return $crud
-       
         ->setPageTitle('index', 'Oeuvres');
-
     }
-
-    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -39,7 +34,7 @@ class PaintingCrudController extends AbstractCrudController
             TextareaField::new('technic')->setLabel('Technique'),
             ImageField::new('image')
                 ->setBasePath('css/images')
-                ->setUploadDir('css/images')
+                ->setUploadDir('public/css/images')
                 ->setLabel('Image'),
             ChoiceField::new('Category')
             ->setChoices([
@@ -49,15 +44,12 @@ class PaintingCrudController extends AbstractCrudController
             ->setLabel('Catégorie') 
         ];
     }
-
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-
         ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
             return $action->setIcon('fa fa-add')->setLabel("Ajouter une oeuvre");
         })
         ;
     }
-    
 }
