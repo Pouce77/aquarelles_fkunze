@@ -19,6 +19,7 @@ class LoginType extends AbstractType{
     $builder
           ->add('email',EmailType::class,[
             "label" => "Email",
+            "attr" => ["class" => "form-control", "placeholder" => "Votre Email"],
             "required" => true,
             //'row_attr' => ['class' => 'nom', 'id' => 'name'],
             "constraints" => [
@@ -28,6 +29,7 @@ class LoginType extends AbstractType{
           ])
           ->add('password',PasswordType::class,[
             "label"=>"Mot de passe",
+            "attr" => ["class" => "form-control"],
             "required" => true,
             'constraints' => [
               new NotBlank(["message" => "Le mot de passe ne peut pas être vide !"])

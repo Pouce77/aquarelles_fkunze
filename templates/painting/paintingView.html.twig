@@ -28,7 +28,7 @@
 							</div>
 							<div class="modal-body">
 								{{ form_start(form) }}
-								{{form_row(form.user,{'attr': {'value': app.user.username }})}}
+								{{form_row(form.user|escape,{'attr': {'value': app.user.username }})}}
 								{{form_row(form.content)}}
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
 								<input class='btn btn-primary' type="submit" value="Envoyer pour validation"></input>

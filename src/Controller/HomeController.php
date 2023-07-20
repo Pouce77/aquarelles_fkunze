@@ -89,7 +89,7 @@ class HomeController extends AbstractController
             ]);
          } catch (TransportExceptionInterface $e) {
             // some error prevented the email sending; display an
-            // error message or try to resend the messagE
+            // error message or try to resend the message
             $this->addFlash('danger',"Une erreur s'est produite lors de l'envoi de votre message !");            
         }
         
