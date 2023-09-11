@@ -32,7 +32,8 @@ document.addEventListener("shown.bs.modal",function(e) {
 
 
 const img = document.getElementById("imgPaint");
-
+const footer=document.getElementById("footer");
+console.log(footer);
 if (img!=null) {
 let onLoadHeight=img.clientHeight;
 
@@ -45,6 +46,9 @@ const buttonGrow=document.getElementById("buttonGrow");
      let heightImg=img.clientHeight;
      //zoom de 10% en plus
      img.style.height=heightImg+((heightImg*10)/100)+"px";  
+     console.log(footer);
+      footer.style.animation = "footeranim 1s ease-out 1";
+      footer.style.opacity=0;
     } 
   })
 
@@ -55,7 +59,9 @@ const buttonGrow=document.getElementById("buttonGrow");
     if (img.clientHeight>onLoadHeight){
      let heightImg=img.clientHeight;
      //dézoom de 10% en moins
-     img.style.height=heightImg-((heightImg*10)/100)+"px"; 
+     img.style.height=heightImg-((heightImg*10)/100)+"px";
+     footer.style.animation = "footeraniminverse 1s ease-out 1";
+      footer.style.opacity=1; 
     }
   })
 }

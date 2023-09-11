@@ -107,7 +107,7 @@ class PaintingController extends AbstractController
         $comments=$commentRepository->findBy([
             "painting"=>$id
                 ]);
-        
+        dump($comments);
         //On crée un nouveau commmentaire si le formulaire est rempli
         $comment=new Comment();
         $form=$this->createForm(CommentType::class, $comment);

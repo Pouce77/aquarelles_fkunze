@@ -284,3 +284,20 @@ background: linear-gradient(to right, #CEC9CD 0%, #B5B7C5 100%);
 	max-width: 100%;
 	max-height: 100%;
 }
+
+@keyframes footeranim {
+	0% {
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}
+@keyframes footeraniminverse {
+	0% {
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
